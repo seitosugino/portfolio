@@ -1,0 +1,67 @@
+= form_with model:@post, local:true do |f|
+  .table
+    tr
+      th
+        | タイトル
+      td
+        = f.text_field :titel, class: 'form-control', placeholder:"タイトル"
+    tr
+      th
+        | 概要説明
+      td
+        = f.text_area :introduction, class: "form-control", placeholder:"概要説明"
+    tr
+      th
+        | トップ画像
+      td
+        = f.attachment_field :title_image
+    tr
+      th
+        br
+          | 本文
+      td
+        = f.text_area :body, class: "form-control", placeholder:"本文"
+    tr
+      th
+        | 本文画像
+      td
+        = f.attachment_field :body_image
+    tr
+      th
+        br
+          | URL
+      td
+        = f.text_field :url, class: 'form-control', placeholder:"URL"
+    tr
+      th
+        | 原文
+      td
+        = f.text_area :original, class: 'form-control', placeholder:"原文"
+    tr
+      th
+        | タグ
+      td
+        br
+          = f.text_field :tag_list, value: @post.tag_list.join(',')
+    tr
+      th
+        br
+        | 評価
+      td
+        br
+          #star
+            = f.hidden_field :star, id: :review_star, class:'form-control'
+            
+            javascript:
+              $('#star').raty({
+                size     : 36,
+                starOff:  "#{ asset_path('star-off.png') }",
+                starOn : "#{ asset_path('star-on.png') }",
+                starHalf: "#{ asset_path('star-half.png') }",
+                scoreName: 'post[star]',
+                half: true,
+              });
+
+  = f.submit "新規投稿"
+
+    

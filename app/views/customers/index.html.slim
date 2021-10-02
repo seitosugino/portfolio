@@ -1,0 +1,22 @@
+.container
+  .row
+    .col-sm-12.col-md-10.col-lg-08.px-5.px-sm-0.mx-auto.text-center
+      h2
+        | ユーザー一覧
+      .text-right
+        = link_to customers_path do
+      table
+        thead
+          tr
+            th
+             | 名前
+            th
+             | 記事数
+            th
+             | いいね
+            th
+             | お気に入り
+        tbody
+          - @customers.each do |customer|
+            tr
+              td
