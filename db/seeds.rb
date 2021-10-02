@@ -6,3 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 AdminUser.create!(email: 'admin@example.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
+
+array = %w(プログラミング ガジェット スマートフォンパソコン 生活 ニュース 料理)
+array.each{ |tag|
+  tag_list = ActsAsTaggableOn::Tag.new
+  tag_list.name = tag
+  tag_list.save
+}

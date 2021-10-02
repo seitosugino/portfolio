@@ -5,8 +5,8 @@ class PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.search(params[:search]).page(params[:page]).per(20)
-    @tags = Post.tag_count_on(:tags).most_used(20)
+    @posts = Post.search(params[:search]).page(params[:page]).per(8)
+    @tags = ActsAsTaggableOn::Tag.all
     @amount = @posts.total_count
   end
   
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   
   def new
     @post = Post.new
-    
+    @tags = ActsAsTaggableOn::Tag.all
   end
   
   def create

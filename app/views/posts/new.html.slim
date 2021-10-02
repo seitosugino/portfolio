@@ -42,7 +42,9 @@
         | タグ
       td
         br
-          = f.text_field :tag_list, value: @post.tag_list.join(',')
+          - @tags.each do |tag|
+            = f.check_box :tag_list, { multiple: true }, "#{tag.name}", nil
+            = f.label " #{tag.name}(#{tag.taggings_count})", class: "label label-default"
     tr
       th
         br
