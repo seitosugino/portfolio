@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2021_10_02_075132) do
     t.datetime "remember_created_at"
     t.string "name"
     t.text "introduction"
-    t.string "image"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -54,20 +54,18 @@ ActiveRecord::Schema.define(version: 2021_10_02_075132) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "customer_id_id"
-    t.integer "tag_id_id"
+    t.integer "customer_id"
     t.string "title"
     t.text "introduction"
-    t.string "title_image"
+    t.string "title_image_id"
     t.text "body"
-    t.string "body_image"
+    t.string "body_image_id"
     t.string "url"
     t.text "original"
     t.float "star"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id_id"], name: "index_posts_on_customer_id_id"
-    t.index ["tag_id_id"], name: "index_posts_on_tag_id_id"
+    t.index ["customer_id"], name: "index_posts_on_customer_id"
   end
 
   create_table "taggings", force: :cascade do |t|

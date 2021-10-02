@@ -22,7 +22,8 @@ class PostsController < ApplicationController
   
   def create
     @post = Post.new(post_params)
-    if @post.save
+    @post.customer_id = current_customer.id
+    if @post.save!
       flash[:notice] = "#{@post.title}を投稿しました"
       redirect_to post_poth(@post)
     else
@@ -47,6 +48,6 @@ class PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:customer_id, :tag_id, :title, :introduction, :title_image, :body, :body_image, :url, :original, :star, :tag_list)
+    params.require(:post).permit(:customer_id, :title, :introduction, :title_image, :body, :body_image, :url, :original, :star, :tag_list)
   end
 end
