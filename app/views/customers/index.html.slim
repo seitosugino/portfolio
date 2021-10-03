@@ -4,7 +4,6 @@
       h2
         | ユーザー一覧
       .text-right
-        = link_to customers_path do
       table
         thead
           tr
@@ -17,6 +16,12 @@
             th
              | お気に入り
         tbody
-          - @customers.each do |customer|
+          - @customers.each do |customers|
             tr
+              td
+                = customers.name
+              td
+                = customers.posts.count
+              td
+              
               td
