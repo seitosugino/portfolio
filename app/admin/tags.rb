@@ -11,7 +11,7 @@ ActiveAdmin.register Tag do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-  permit_params :name,:taggings_count
+permit_params :name,:taggings_count
   
   form do |f|
     f.inputs 'ユーザー' do

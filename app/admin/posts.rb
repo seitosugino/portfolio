@@ -15,7 +15,7 @@ ActiveAdmin.register Post do
 
   form do |f|
     f.inputs '投稿' do
-      f.input :tag_id
+      f.input :customer_id
       f.input :title
       f.input :introduction
       f.input :title_image, :as => :file

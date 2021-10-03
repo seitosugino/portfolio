@@ -8,3 +8,6 @@
        .d-flex.flex-wrap.mt-3.mx-auto
          = render "post_each", posts: @posts
        = paginate @posts
+       
+       - @tags.each do |tag|
+        = link_to "#{tag.name}(#{tag.taggings_count})", posts_path(tag: tag.name)

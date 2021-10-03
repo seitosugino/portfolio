@@ -5,14 +5,27 @@ class PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.search(params[:search]).page(params[:page]).per(8)
+    if params[:tag]
+      @posts = Post.tagged_with(params[:tag]).page(params[:page]).per(8)
+    else
+      @posts = Post.search(params[:search]).page(params[:page]).per(8)
+    end
+    
     @tags = ActsAsTaggableOn::Tag.all
-    @amount = @posts.total_count
+      if @tag = params[:tag]
+        @post =Post.tagged_with(params[:tag])
+      end
+      
+    if params[:tag]
+      @amount = Post.tagged_with(params[:tag]).count
+    else
+      @amount = @posts.total_count
+    end
   end
   
   def show
     @post = Post.find(params[:id])
-    @tags = @post.tag_count_on(:tags)
+    @tags = @post.tag_counts_on(:tags)
   end
   
   def new

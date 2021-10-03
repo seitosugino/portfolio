@@ -1,6 +1,11 @@
 -posts.each do |post|
   .mx-4.mt-3.w-20
-    = link_to post_path(post) do
-      = attachment_image_tag post, :title_image, size:"230x170"
-        p.mt-1
-        = post.title
+    .table
+      = link_to post_path(post) do
+        tr
+          td
+             = attachment_image_tag post, :title_image, size:"230x170"
+        tr
+          td
+            p.mt-1
+              = post.title

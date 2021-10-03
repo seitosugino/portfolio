@@ -4,7 +4,7 @@
       th
         | タイトル
       td
-        = f.text_field :titel, class: 'form-control', placeholder:"タイトル"
+        = f.text_field :title, class: 'form-control', placeholder:"タイトル"
     tr
       th
         | 概要説明
@@ -42,10 +42,11 @@
         | タグ
       td
         br
-          - @tags.each do |tag|
-            = f.check_box :tag_list, { multiple: true }, "#{tag.name}", nil
-            = f.label " #{tag.name}(#{tag.taggings_count})", class: "label label-default"
-    tr
+          = f.text_field :tag_list, value: @post.tag_list.join(',')
+        br
+          タグ表示
+            - @tags.each do |tag|
+             = "#{tag.name},"
       th
         br
         | 評価
