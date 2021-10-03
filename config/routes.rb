@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :posts,only: [:index,:new,:create,:show,:edit,:update,]
   resources :customers,only: [:index,:show,:edit,:update,]
   resources :tag
+  resources :categories,only: [:show,]
 end

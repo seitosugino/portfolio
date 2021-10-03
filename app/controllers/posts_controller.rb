@@ -21,6 +21,8 @@ class PostsController < ApplicationController
     else
       @amount = @posts.total_count
     end
+    
+    @categories = Category.all
   end
   
   def show
@@ -61,6 +63,6 @@ class PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:customer_id, :title, :introduction, :title_image, :body, :body_image, :url, :original, :star, :tag_list)
+    params.require(:post).permit(:customer_id, :category_id, :title, :introduction, :title_image, :body, :body_image, :url, :original, :star, :tag_list)
   end
 end

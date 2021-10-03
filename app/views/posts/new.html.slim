@@ -2,7 +2,13 @@
   .table
     tr
       th
-        | タイトル
+        | カテゴリー
+      td
+        br
+          = f.collection_select :category_id, Category.all, :id, :name, prompt: "-- 選択してください --"
+      th
+        br
+          | タイトル
       td
         = f.text_field :title, class: 'form-control', placeholder:"タイトル"
     tr

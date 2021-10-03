@@ -1,4 +1,4 @@
-ActiveAdmin.register Tag do
+ActiveAdmin.register Category do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -11,12 +11,11 @@ ActiveAdmin.register Tag do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-permit_params :name,:taggings_count
+permit_params :name
   
   form do |f|
-    f.inputs 'タグ' do
+    f.inputs 'カテゴリー' do
       f.input :name
-      f.input :taggings_count
 
     end
     f.actions
