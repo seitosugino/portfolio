@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root :to => 'posts#top'
-  resources :posts,only: [:index,:new,:create,:show,:edit,:update,]
+  resources :posts,only: [:index,:new,:create,:show,:edit,:update,] do
+    resources :likes, only: [:create, :destroy]
+  end
   resources :customers,only: [:index,:show,:edit,:update,]
   resources :tag
   resources :categories,only: [:show,]
