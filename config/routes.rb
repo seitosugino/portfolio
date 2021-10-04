@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root :to => 'posts#top'
   resources :posts,only: [:index,:new,:create,:show,:edit,:update,] do
     resources :likes, only: [:create, :destroy]
+    resources :post_comments, only: [:create, :destroy]
   end
   resources :customers,only: [:index,:show,:edit,:update,]
   resources :tag
