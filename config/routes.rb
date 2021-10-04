@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   resources :posts,only: [:index,:new,:create,:show,:edit,:update,] do
     resources :likes, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
+    member do
+      get :following, :followers
+    end
   end
   resources :customers,only: [:index,:show,:edit,:update,]
   resources :tag
