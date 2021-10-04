@@ -6,14 +6,10 @@ class Customer < ApplicationRecord
          
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :active_relationships, class_name: "Relationship",
-                                  foreign_key: "follower_id",
-                                  dependent: :destroy
-  has_many :passive_relationships, class_name: "Relationship",
-                                  foreign_key: "followed_id",
-                                  dependent: :destroy
+  has_many :active_relationships, class_name: "Relationship",foreign_key: "follower_id",dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship",foreign_key: "followed_id",dependent: :destroy
   has_many :follwing, through: :active_relationships, source: :followed
-  has_many :follwers, through: :active_relationships, source: :follower
+  has_many :follwers, through: :passive_relationships, source: :follower
   
   def follow(other_user)
     followng << other_user

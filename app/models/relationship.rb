@@ -1,6 +1,6 @@
 class Relationship < ApplicationRecord
-  belongs_to :follower, calss_name: "Customer"
-  belongs_to :followed, calss_name: "Customer"
-  validates :follower_id, preence: ture
-  validates :followed_id, preence: ture
+  belongs_to :follower, class_name: "Customer"
+  belongs_to :followed, class_name: "Customer"
+  validates :follower_id, presence: true
+  validates :followed_id, presence: true
 end
