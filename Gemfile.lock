@@ -137,6 +137,8 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    impressionist (2.0.0)
+      nokogiri (~> 1)
     inherited_resources (1.13.0)
       actionpack (>= 5.2, < 6.2)
       has_scope (~> 0.6)
@@ -328,6 +330,7 @@ DEPENDENCIES
   devise
   font-awesome-sass
   html2slim
+  impressionist
   jbuilder (~> 2.5)
   jquery-rails
   kaminari (~> 0.17.0)
