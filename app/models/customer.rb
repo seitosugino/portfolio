@@ -10,6 +10,7 @@ class Customer < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship",foreign_key: "followed_id",dependent: :destroy
   has_many :follwing, through: :active_relationships, source: :followed
   has_many :follwers, through: :passive_relationships, source: :follower
+  attachment :image
   
   def follow(other_user)
     followng << other_user
