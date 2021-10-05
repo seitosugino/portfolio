@@ -6,19 +6,19 @@
       table
         tr
           th.mx-auto.text-center
-            = attachment_image_tag @customer, :image, :fill, 50, 50, fallback: "no_image.jpg"
+            = attachment_image_tag @customer, :image, :fill, 50, 50, fallback: 'no_image.jpg'
             br
             br
             = @customer.name
-          td.
+          td
             .contents
-              a href="= following_customer_path(@customer)"
+              a href = following_customer_path(@customer)
                 = @customer.following.count
               br
                 |following
               br
             .contents
-              a href="= following_customer_path(@customer)"
+              a href = followers_customer_path(@customer)
                 = @customer.followers.count 
               br
                 |followers

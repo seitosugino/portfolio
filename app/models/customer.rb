@@ -16,8 +16,8 @@ class Customer < ApplicationRecord
     following << other_customer
   end
   
-  def unfollow
-    active_relationships.find_by(followed_id: other_user.id).destroy
+  def unfollow(other_customer)
+    active_relationships.find_by(followed_id: other_customer.id).destroy
   end
   
   def following?(other_customer)
