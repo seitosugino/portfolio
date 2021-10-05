@@ -14,7 +14,8 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  resources :customers,only: [:index,:show,:edit,:update,]
+  resources :customers,only: [:index,:show,:edit,:update,] 
+  resources :relationships
   resources :tag
   resources :categories,only: [:show,]
 end
