@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 AdminUser.create!(email: 'admin@example.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
 
+Customer.create!(email: 'a@a', password: '123456', password_confirmation: '123456', name: 'tesuto', introduction: 'テスト') if Rails.env.development?
+
 Category.create!(id: '1',name: 'プログラミング')
 Category.create!(id: '2',name: 'ガジェット')
 Category.create!(id: '3',name: '生活')

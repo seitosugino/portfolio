@@ -4,6 +4,7 @@ class CreateRates < ActiveRecord::Migration[5.2]
       t.references :post, foreign_key: true
       t.references :customer, foreign_key: true
       t.float :star
+      t.string :comment
 
       t.timestamps
     end

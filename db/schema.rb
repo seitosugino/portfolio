@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 2021_10_04_134242) do
   create_table "post_comments", force: :cascade do |t|
     t.integer "post_id"
     t.integer "customer_id"
-    t.text "comment"
+    t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_post_comments_on_customer_id"
@@ -113,7 +113,6 @@ ActiveRecord::Schema.define(version: 2021_10_04_134242) do
     t.text "body"
     t.string "body_image_id"
     t.string "url"
-    t.text "original"
     t.float "star"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -125,6 +124,7 @@ ActiveRecord::Schema.define(version: 2021_10_04_134242) do
     t.integer "post_id"
     t.integer "customer_id"
     t.float "star"
+    t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_rates_on_customer_id"
@@ -136,9 +136,6 @@ ActiveRecord::Schema.define(version: 2021_10_04_134242) do
     t.integer "followed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["followed_id"], name: "index_relationships_on_followed_id"
-    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
-    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "taggings", force: :cascade do |t|

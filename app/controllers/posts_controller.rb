@@ -29,6 +29,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @tags = @post.tag_counts_on(:tags)
     @like = Like.new
+    @post_comment = PostComment.new
   end
   
   def new
