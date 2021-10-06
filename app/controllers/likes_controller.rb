@@ -1,12 +1,15 @@
 class LikesController < ApplicationController
   
   def create
-    @like = current_customer.likes.create(post_id: params[:post_id])
+    post = Post.find(params[:post_id])
+    @like = current_customer.likes.new(post_id: post.id)
+    @like.save
     redirect_back(fallback_location: root_path)
   end
 
   def destroy
-    @like = Like.find(post_id: params[:post_id],customer_id: current_customer.id)
+    post = Post.find(params[:post_id])
+    @like = current_customer.likes.find_by(post_id: post.id)
     @like.destroy
     redirect_back(fallback_location: root_path)
   end

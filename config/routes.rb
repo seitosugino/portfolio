@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :tag
   resources :categories,only: [:show]
+  resources :rates
 end

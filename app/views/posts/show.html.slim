@@ -1,0 +1,71 @@
+.container.px-5.px-sm-0
+  .row
+    .col-md-12.mx-auto.text-center
+      table
+        tr
+          th
+          h1.mt-3
+            = @post.title
+          td.text-right
+            - if @post.liked_by?(current_customer)
+              = link_to post_like_path(@post), method: :delete do
+                |いいね♥
+                = @post.likes.count
+            -else
+              = link_to post_likes_path(@post), method: :post do
+                |いいね♡
+                = @post.likes.count
+        tr
+          th
+            = attachment_image_tag @post, :title_image, :fill, 200, 200
+          th
+            = @post.introduction
+      table
+        tr
+          td
+            = @post.body
+          td
+            = attachment_image_tag @post, :body_image, :fill, 300, 300
+            
+      table
+        tr
+          th
+            |URL
+        tr
+          td.text-left
+            = @post.url
+            
+      table
+        tr
+          th
+            |参考になった
+            #star
+
+            
+              javascript:
+                $('#star').raty({
+                  size: 36,
+                  starOff:  "#{ asset_path('star-off.png') }",
+                  starOn : "#{ asset_path('star-on.png') }",
+                  starHalf: "#{ asset_path('star-half.png') }",
+                  half: true,
+                  readOnly: true,
+                  score: #{ @post.avg_score},
+                });
+              
+              = @post.avg_score
+              
+              |（
+              = @post.score_count
+              |  件）
+              = link_to "レビューをする", new_rate_path
+              |   
+              = link_to "レビューを一覧で見る", rates_path
+      h2.text-left
+        |コメント
+      table
+        - @post.post_comments.each do |post_comment|
+        tr
+          th
+            
+            

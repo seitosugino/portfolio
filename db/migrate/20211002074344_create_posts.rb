@@ -10,7 +10,6 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.text :body
       t.string :body_image_id
       t.string :url
-      t.text :original
       t.float :star
 
       t.timestamps
