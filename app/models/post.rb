@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   attachment :title_image
   attachment :body_image
+  attachment :image
   acts_as_taggable
   
   def self.search(search)

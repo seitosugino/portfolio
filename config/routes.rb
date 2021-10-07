@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :posts,only: [:index,:new,:create,:show,:edit,:update] do
     resources :likes, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
+    member do
+      get :rates
+    end
   end
   resources :customers,only: [:index,:show,:edit,:update] do
     member do
@@ -19,5 +22,5 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :tag
   resources :categories,only: [:show]
-  resources :rates
+  resources :rates,only: [:show,:create]
 end

@@ -58,9 +58,9 @@
               |（
               = @post.score_count
               |  件）
-              = link_to "レビューをする", new_rate_path
+              = link_to "レビューをする", rate_path(@post)
               |   
-              = link_to "レビューを一覧で見る", rates_path
+              = link_to "レビューを一覧で見る", rates_post_path
       h2.text-left
         |コメント
       table

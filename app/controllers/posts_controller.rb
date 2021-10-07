@@ -62,6 +62,13 @@ class PostsController < ApplicationController
     end
   end
   
+  def rates
+    @post = Post.find(params[:id])
+    @rates = @post.rates
+    @customer = Customer.where(id: params[:id])
+    render 'show_rates'
+  end
+  
   private
   
   def post_params
