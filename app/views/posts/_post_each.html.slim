@@ -9,3 +9,14 @@
           td
             p.mt-1
               = post.title
+      tr
+        td
+          |レビュー
+          = post.avg_score
+          |点
+          |（
+          = post.score_count
+          |  件）
+        td
+          = post.likes.count
+          |いいね

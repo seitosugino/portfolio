@@ -3,7 +3,6 @@
     .col-sm-12.col-md-10.col-lg-08.px-5.px-sm-0.mx-auto.text-center
       h2
         | ユーザー一覧
-      .text-right
       table
         thead
           tr
@@ -18,12 +17,16 @@
         tbody
           - @customers.each do |customers|
             tr
-              td
+              td.text-left
                 = link_to customer_path(customers) do
                   = attachment_image_tag customers, :image, :fill, 50, 50, fallback: "no_image.jpg"
                   = customers.name
-              td
+              td.text-left
                 = customers.posts.count
-              td
-              
-              td
+              td.text-left
+                = customers.followers.count 
+              td.text-left
+                - @likes_count = 0
+                - customers.posts.each do |post|
+                  - @likes_count += post.likes.count
+                = @likes_count

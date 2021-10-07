@@ -42,7 +42,7 @@ class PostsController < ApplicationController
     @post.customer_id = current_customer.id
     if @post.save!
       flash[:notice] = "#{@post.title}を投稿しました"
-      redirect_to post_poth(@post)
+      redirect_to post_path(@post)
     else
       render :new
     end

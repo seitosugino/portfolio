@@ -3,10 +3,12 @@
     .col-sm-12.col-md-10.col-lg-08.px-5.px-sm-0.mx-auto.text-center
       h1
         |マイページ
+        
+      = link_to '新規投稿はこちら', new_post_path
       table
         tr
           th.mx-auto.text-center
-            = attachment_image_tag @customer, :image, :fill, 50, 50, fallback: 'no_image.jpg'
+            = attachment_image_tag @customer, :image, :fill, size:"120x120", fallback: 'no_image.jpg'
             br
             br
             = @customer.name
@@ -19,7 +21,7 @@
               br
             .contents
               a href = followers_customer_path(@customer)
-                = @customer.followers.count 
+                = @customer.followers.count
               br
                 |followers
               br
@@ -31,10 +33,14 @@
                   = form_with(model:current_customer.active_relationships.build, local: true)do |f|
                     = hidden_field_tag :followed_id, @customer.id
                     = f.submit "フォローする"
-        tr
-          th.mx-auto.text-center
+      h2
             |自己紹介
+      table
         tr
           td
             = @customer.introduction
-        
+            
+      h2
+        |投稿一覧
+      .d-flex.flex-wrap.mt-3.mx-auto
+        = render "posts/post_each", posts: @posts
