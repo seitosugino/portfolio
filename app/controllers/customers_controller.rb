@@ -2,7 +2,14 @@ class CustomersController < ApplicationController
   before_action :logged_in_customer, only:[ :edit, :update, :create, :destroy]
   
   def index
-    @customers = Customer.all.page(params[:page]).per(10)
+    selection = params[:keyword]
+    if request.fullpath.include?('keyword')
+      @customers = Customer.sort(params[:keyword])
+      @customers = Kaminari.paginate_array(@customers).page(params[:page]).per(10)
+    else
+      @customers = Customer.all.page(params[:page]).per(10)
+    end
+    
   end
   
   def show

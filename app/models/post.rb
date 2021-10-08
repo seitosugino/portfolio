@@ -8,7 +8,6 @@ class Post < ApplicationRecord
   is_impressionable counter_cache: true
   attachment :title_image
   attachment :body_image
-  attachment :image
   acts_as_taggable
   
   def already_liked?(post)
@@ -39,22 +38,24 @@ class Post < ApplicationRecord
     end
   end
 
-def self.sort(selection)
-  case selection
-    when 'new'
-      return all.order(created_at: :DESC)
-    when 'old'
-      return all.order(created_at: :ASC)
-    when 'likes'
-      return find(Like.group(:post_id).order(Arel.sql('count(post_id) desc')).pluck(:post_id))
-    when 'dislikes'
-      return find(Like.group(:post_id).order(Arel.sql('count(post_id) asc')).pluck(:post_id))
-    when 'highrate'
-      return find(Rate.group(:post_id).order('avg(star) desc').pluck(:post_id))
-    when 'lowrate'
-      return find(Rate.group(:post_id).order('avg(star) asc').pluck(:post_id))
+  def self.sort(selection)
+    case selection
+      when 'new'
+        return all.order(created_at: :DESC)
+      when 'old'
+        return all.order(created_at: :ASC)
+      when 'likes'
+        return find(Like.group(:post_id).order('count(post_id) desc').pluck(:post_id))
+      when 'dislikes'
+        return find(Like.group(:post_id).order('count(post_id) asc').pluck(:post_id))
+      when 'highrate'
+        return find(Rate.group(:post_id).order('avg(star) desc').pluck(:post_id))
+      when 'lowrate'
+        return find(Rate.group(:post_id).order('avg(star) asc').pluck(:post_id))
+      when 'manyimpressions'
+        return Post.order('impressions_count desc')
+      when 'fewimpressions'
+        return Post.order('impressions_count asc')
+    end
   end
-end
-  
-  
 end

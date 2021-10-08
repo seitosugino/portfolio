@@ -5,6 +5,7 @@
         |投稿一覧（全 
         = @amount
         |  件）
+      br
       = form_with model: @post, url: posts_path, method: :get, local: true do |form|
         = form.select :keyword,[ ['投稿が新しい順', 'new'],
                                  ['投稿が古い順', 'old'],
@@ -12,8 +13,11 @@
                                  ['いいねが少ない順', 'dislikes'],
                                  ['評価が高い順', 'highrate'],
                                  ['評価が低い順', 'lowrate'],
+                                 ['閲覧数が多い順', 'manyimpressions'],
+                                 ['閲覧数が少ない順', 'fewimpressions'],
                                 ]
         = form.submit "並び替え"
+      br
       - @categories.each do |category|
         = link_to category.name, category_path(category), class: "mx-3"
        

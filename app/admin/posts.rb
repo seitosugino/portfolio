@@ -19,11 +19,10 @@ ActiveAdmin.register Post do
       f.input :category_id
       f.input :title
       f.input :introduction
-      f.input :title_image, :as => :file
+      f.input :title_image_id, :as => :file
       f.input :body
-      f.input :body_image, :as => :file
+      f.input :body_image_id, :as => :file
       f.input :url
-      f.input :original
       f.input :star
     end
     f.actions

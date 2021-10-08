@@ -24,4 +24,21 @@ class Customer < ApplicationRecord
     following.include?(other_customer)
   end
   
+  def self.sort(selection)
+    case selection
+      when 'new'
+        return all.order(created_at: :DESC)
+      when 'old'
+        return all.order(created_at: :ASC)
+      when 'manypost'
+        return find(Post.group(:customer_id).order('count(customer_id) desc').pluck(:customer_id))
+      when 'fewpost'
+        return find(Post.group(:customer_id).order('count(customer_id) asc').pluck(:customer_id))
+      when 'manyfollower'
+        return find(Relationship.group(:customer_id).order('count(follower_id) desc').pluck(:customer_id))
+      when 'fewfollower'
+        return find(Relationship.group(:customer_id).order('count(follower_id) asc').pluck(:customer_id))
+    end
+  end
+  
 end

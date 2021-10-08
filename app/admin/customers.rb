@@ -17,7 +17,7 @@ ActiveAdmin.register Customer do
     f.inputs 'ユーザー' do
       f.input :name
       f.input :introduction
-      f.input :image, :as => :file
+      f.input :image_id, :as => :file
 
     end
     f.actions

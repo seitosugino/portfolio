@@ -1,17 +1,27 @@
 .container
   .row
     .col-sm-12.col-md-10.col-lg-08.px-5.px-sm-0.mx-auto.text-center
-      h2
-        | ユーザー一覧
+      h3.mt-3
+        | 投稿者一覧
+      br
       table
         thead
           tr
             th
-              | 名前
+              - if request.fullpath.include?('old')
+                = link_to "名前▲", customers_path(keyword: 'new')
+              - else
+                = link_to "名前▼", customers_path(keyword: 'old')
             th
-              | 記事数
+              - if request.fullpath.include?('few')
+                = link_to "記事数▲", customers_path(keyword: 'manypost')
+              - else
+                = link_to "記事数▼", customers_path(keyword: 'fewpost')
             th
-              | フォロー数
+              - if request.fullpath.include?('few')
+                = link_to "フォロー数▲", customers_path(keyword: 'manyfollower')
+              - else
+                = link_to "フォロー数▼", customers_path(keyword: 'fewfollower')
             th
               | いいね数
             th
