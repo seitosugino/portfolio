@@ -30,6 +30,7 @@ class PostsController < ApplicationController
     @tags = @post.tag_counts_on(:tags)
     @like = Like.new
     @post_comment = PostComment.new
+    impressionist(@post, nil,  unique: [:ip_address])
   end
   
   def new
@@ -40,7 +41,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
-    if @post.save!
+    if @post.save
       flash[:notice] = "#{@post.title}を投稿しました"
       redirect_to post_path(@post)
     else

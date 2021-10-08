@@ -7,13 +7,15 @@
         thead
           tr
             th
-             | 名前
+              | 名前
             th
-             | 記事数
+              | 記事数
             th
-             | フォロー数
+              | フォロー数
             th
-             | いいね数
+              | いいね数
+            th
+              | 閲覧数
         tbody
           - @customers.each do |customers|
             tr
@@ -30,3 +32,8 @@
                 - customers.posts.each do |post|
                   - @likes_count += post.likes.count
                 = @likes_count
+              td.text-left
+                - @impressions_count = 0
+                - customers.posts.each do |post|
+                  - @impressions_count += post.impressions.count
+                = @impressions_count

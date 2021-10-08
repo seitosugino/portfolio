@@ -6,6 +6,11 @@
           th
           h1.mt-3
             = @post.title
+        tr.text-right
+          td
+            |投稿日:
+            = l @post.created_at
+        tr
           td.text-right
             - if @post.liked_by?(current_customer)
               = link_to post_like_path(@post), method: :delete do
@@ -15,11 +20,28 @@
               = link_to post_likes_path(@post), method: :post do
                 |いいね♡
                 = @post.likes.count
+      table
         tr
           th
             = attachment_image_tag @post, :title_image, :fill, 200, 200
           th
             = @post.introduction
+        tr
+          td
+            |おすすめ度（投稿者）
+            #rate
+              javascript:
+                $('#rate').raty({
+                  size: 36,
+                  starOff:  "#{ asset_path('star-off.png') }",
+                  starOn : "#{ asset_path('star-on.png') }",
+                  starHalf: "#{ asset_path('star-half.png') }",
+                  half: true,
+                  readOnly: true,
+                  score: #{ @post.star},
+                });
+              
+              = @post.star
       table
         tr
           td
@@ -61,6 +83,11 @@
               = link_to "レビューをする", rate_path(@post)
               |   
               = link_to "レビューを一覧で見る", rates_post_path
+        tr
+          td.text-right
+            |閲覧数 : 
+            = @post.impressions_count
+          
       h2.text-left
         |コメント
       table

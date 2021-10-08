@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :rates, dependent: :destroy
   has_many :likes, dependent: :destroy
+  is_impressionable counter_cache: true
   attachment :title_image
   attachment :body_image
   attachment :image
