@@ -5,10 +5,14 @@ class PostsController < ApplicationController
   end
   
   def index
+    selection = params[:keyword]
     if params[:tag]
-      @posts = Post.tagged_with(params[:tag]).page(params[:page]).per(8)
+      @posts = Post.tagged_with(params[:tag]).order(created_at: :desc).page(params[:page]).per(8)
+    elsif params[:keyword]
+      @posts = Post.sort(params[:keyword])
+      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
     else
-      @posts = Post.search(params[:search]).page(params[:page]).per(8)
+      @posts = Post.search(params[:search]).order(created_at: :desc).page(params[:page]).per(8)
     end
     
     @tags = ActsAsTaggableOn::Tag.all
@@ -76,3 +80,4 @@ class PostsController < ApplicationController
     params.require(:post).permit(:customer_id, :category_id, :title, :introduction, :title_image, :body, :body_image, :url, :original, :star, :tag_list)
   end
 end
+

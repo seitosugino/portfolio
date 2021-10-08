@@ -11,19 +11,11 @@ class Post < ApplicationRecord
   attachment :image
   acts_as_taggable
   
-  def self.search(search)
-    if search
-      Post.where(['title LIKE ?', '%'+search+'%'])
-    else
-      Post.all
-    end
-  end
-  
   def already_liked?(post)
     self.likes.exists?(post_id: post.id)
   end
   
-   def avg_score
+  def avg_score
     unless self.rates.empty?
       rates.average(:star).round(1)
     else
@@ -38,6 +30,31 @@ class Post < ApplicationRecord
   def liked_by?(customer)
     likes.where(customer_id: customer.id).exists?
   end
+  
+  def self.search(search)
+    if search
+      Post.where(['title LIKE ?', '%'+search+'%'])
+    else
+      Post.all
+    end
+  end
+
+def self.sort(selection)
+  case selection
+    when 'new'
+      return all.order(created_at: :DESC)
+    when 'old'
+      return all.order(created_at: :ASC)
+    when 'likes'
+      return find(Like.group(:post_id).order(Arel.sql('count(post_id) desc')).pluck(:post_id))
+    when 'dislikes'
+      return find(Like.group(:post_id).order(Arel.sql('count(post_id) asc')).pluck(:post_id))
+    when 'highrate'
+      return find(Rate.group(:post_id).order('avg(star) desc').pluck(:post_id))
+    when 'lowrate'
+      return find(Rate.group(:post_id).order('avg(star) asc').pluck(:post_id))
+  end
+end
   
   
 end
