@@ -2,7 +2,10 @@
   .row
     .col-sm-12.col-md-10.col-lg-08.px-5.px-sm-0.mx-auto.text-center
       h1
-        |マイページ
+        - if @customer == current_customer
+          |マイページ
+        - else
+          |ユーザー
         
       = link_to '新規投稿はこちら', new_post_path
       table
@@ -14,6 +17,7 @@
             = @customer.name
           td
             .contents
+              br
               a href = following_customer_path(@customer)
                 = @customer.following.count
               br

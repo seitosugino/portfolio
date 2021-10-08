@@ -4,7 +4,12 @@
       = link_to post_path(post) do
         tr
           td
-             = attachment_image_tag post, :title_image, size:"230x170"
+            |投稿日:
+            = l post.created_at
+          br
+        tr
+          td
+            = attachment_image_tag post, :title_image, size:"230x170"
         tr
           td
             p.mt-1
