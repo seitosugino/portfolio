@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_04_134242) do
+ActiveRecord::Schema.define(version: 2021_10_09_075753) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -59,6 +59,15 @@ ActiveRecord::Schema.define(version: 2021_10_04_134242) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "entries", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_entries_on_customer_id"
+    t.index ["room_id"], name: "index_entries_on_room_id"
+  end
+
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
     t.integer "impressionable_id"
@@ -94,6 +103,16 @@ ActiveRecord::Schema.define(version: 2021_10_04_134242) do
     t.index ["post_id"], name: "index_likes_on_post_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "room_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_messages_on_customer_id"
+    t.index ["room_id"], name: "index_messages_on_room_id"
+  end
+
   create_table "post_comments", force: :cascade do |t|
     t.integer "post_id"
     t.integer "customer_id"
@@ -116,6 +135,7 @@ ActiveRecord::Schema.define(version: 2021_10_04_134242) do
     t.float "star"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "impressions_count", default: 0
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["customer_id"], name: "index_posts_on_customer_id"
   end
@@ -134,6 +154,12 @@ ActiveRecord::Schema.define(version: 2021_10_04_134242) do
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
