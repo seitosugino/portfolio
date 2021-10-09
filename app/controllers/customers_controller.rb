@@ -15,6 +15,23 @@ class CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @posts = @customer.posts
+    
+    @currentCustomerEntry = Entry.where(customer_id: current_customer.id)
+    @customerEntry = Entry.where(customer_id: @customer.id)
+    unless @customer_id == current_customer.id
+      @currentCustomerEntry.each do |cu|
+        @customerEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      unless @isRoom
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
   end
   
   def following

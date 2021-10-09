@@ -36,6 +36,17 @@
                   = form_with(model:current_customer.active_relationships.build, local: true)do |f|
                     = hidden_field_tag :followed_id, @customer.id
                     = f.submit "フォローする"
+        tr
+          td
+            - unless @customer.id == current_customer.id
+              - if (current_customer.following? @customer) && (@customer.following? current_customer)
+                - if @isRoom == true
+                  = link_to "ダイレクトメッセージ", room_path
+                - else
+                  = form_with model: @room, local: true do |f|
+                    = fields_for @entry do |e|
+                      = e.hidden_field :customer_id, value: @customer.id
+                    = f.submit "チャットを始める"
       h3.mt-3
             |自己紹介
       table
