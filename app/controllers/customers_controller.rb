@@ -25,7 +25,7 @@ class CustomersController < ApplicationController
   end
   
   def followers
-    @title = "Following"
+    @title = "Followers"
     @customer = Customer.find(params[:id])
     @customers = @customer.followers
     render 'show_follow'

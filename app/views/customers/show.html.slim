@@ -1,13 +1,12 @@
 .container
   .row
     .col-sm-12.col-md-10.col-lg-08.px-5.px-sm-0.mx-auto.text-center
-      h1
+      h3.mt-3
         - if @customer == current_customer
           |マイページ
         - else
           |ユーザー
         
-      = link_to '新規投稿はこちら', new_post_path
       table
         tr
           th.mx-auto.text-center
@@ -37,14 +36,14 @@
                   = form_with(model:current_customer.active_relationships.build, local: true)do |f|
                     = hidden_field_tag :followed_id, @customer.id
                     = f.submit "フォローする"
-      h2
+      h3.mt-3
             |自己紹介
       table
         tr
           td
             = @customer.introduction
             
-      h2
+      h3.mt-3
         |投稿一覧
       .d-flex.flex-wrap.mt-3.mx-auto
         = render "posts/post_each", posts: @posts
