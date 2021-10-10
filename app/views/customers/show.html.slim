@@ -41,7 +41,7 @@
             - unless @customer.id == current_customer.id
               - if (current_customer.following? @customer) && (@customer.following? current_customer)
                 - if @isRoom == true
-                  = link_to "ダイレクトメッセージ", room_path
+                  = link_to "ダイレクトメッセージ", room_path(@roomId)
                 - else
                   = form_with model: @room, local: true do |f|
                     = fields_for @entry do |e|

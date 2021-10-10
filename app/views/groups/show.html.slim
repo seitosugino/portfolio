@@ -1,0 +1,16 @@
+.container.px-5.px-sm-0
+  .row
+    .col-md-12.mx-auto.text-center
+      h3.mt-3
+        |グループ詳細
+      table.table.table-hover.table-inverse.text-left
+        tr
+          td
+            = attachment_image_tag(@group, :image, :fill, 50, 50, fallback: "no-image-icon.jpg")
+          td
+            = @group.name
+          td
+            = @group.introduction
+          td
+            - if @group.owner_id == current_customer.id
+                = link_to 'Edit', edit_group_path(@group)
