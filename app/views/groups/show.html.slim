@@ -6,7 +6,7 @@
       table.table.table-hover.table-inverse.text-left
         tr
           td
-            = attachment_image_tag(@group, :image, :fill, 50, 50, fallback: "no-image-icon.jpg")
+            = attachment_image_tag(@group, :image, :fill, 50, 50, fallback: 'no-image-icon.jpg')
           td
             = @group.name
           td
@@ -14,3 +14,22 @@
           td
             - if @group.owner_id == current_customer.id
                 = link_to 'Edit', edit_group_path(@group)
+      
+      table
+        - if @group_posts.present?
+          - @group_posts.each do |m|
+            tr
+              td
+                = m.content
+              td
+                = m.created_at.strftime("%Y-%m-%d %H:%M")
+              td
+                |(
+                = m.customer.name
+                |)
+        - else
+          |メッセージはまだありません
+      
+      = form_with model: @group_post, local: true do |f|
+        = f.text_field :content, placeholder: "メッセージを入力してください"
+        = f.submit "送信する"
