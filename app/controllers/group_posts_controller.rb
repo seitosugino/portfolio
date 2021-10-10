@@ -11,6 +11,6 @@ class GroupPostsController < ApplicationController
   
   private
   def group_post_params
-    params.require(:group_post).permit(:group_id, :customer_id,:content)
+    params.require(:group_post).permit(:group_id, :customer_id, :content)
   end
 end

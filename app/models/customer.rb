@@ -12,6 +12,9 @@ class Customer < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_many :group_posts, dependent: :destroy
+  has_many :group_users, dependent: :destroy
+  has_many :groups, through: :group_users
   attachment :image
   
   def follow(other_customer)

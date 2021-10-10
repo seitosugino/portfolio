@@ -5,13 +5,18 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.all
     @group = Group.new
-    @group.customers << current_customer
   end
   
   def show
     @group = Group.find(params[:id])
     @group_post = GroupPost.new
-    @group_posts = GroupPost.all
+    @group_posts = @group.group_posts
+  end
+  
+  def join
+    @group = Group.find(params[:id])
+    @group.customers << current_customer
+    redirect_to  groups_path
   end
   
   def new
@@ -21,6 +26,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_customer.id
+    @group.customers << current_customer
     if @group.save
       redirect_to root_path, notice: 'グループを作成しました'
     else
@@ -30,6 +36,14 @@ class GroupsController < ApplicationController
   
   def edit
     @group = Group.find(params[:id])
+  end
+  
+  def update
+    if @group.update(group_params)
+      redirect_to groups_path
+    else
+      render "edit"
+    end
   end
   
   private
