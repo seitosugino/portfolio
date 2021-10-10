@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_09_075753) do
+ActiveRecord::Schema.define(version: 2021_10_10_021930) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -66,6 +66,34 @@ ActiveRecord::Schema.define(version: 2021_10_09_075753) do
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_entries_on_customer_id"
     t.index ["room_id"], name: "index_entries_on_room_id"
+  end
+
+  create_table "group_posts", force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "customer_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_group_posts_on_customer_id"
+    t.index ["group_id"], name: "index_group_posts_on_group_id"
+  end
+
+  create_table "group_users", force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_group_users_on_customer_id"
+    t.index ["group_id"], name: "index_group_users_on_group_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "introduction"
+    t.string "image_id"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "impressions", force: :cascade do |t|
