@@ -1,0 +1,23 @@
+= form_for(@contact, url: confirm_path) do |f|
+  .form-group
+    = f.label :name, 'お名前*'
+    = f.text_field :name, autofocus: true, class: 'form-control'
+  
+  .form-group
+    = f.label :phone_number, '電話番号*'
+    = f.text_field :phone_number, class: 'form-control'
+    
+  .form-group
+    = f.label :email, 'メールアドレス*'
+    = f.email_field :email, class: 'form-control'
+    
+  .form-group
+    = f.label :subject, '用件*'
+    br
+    = f.select :subject, options_for_select(Contact.subjects.keys), include_blank: "選択して下さい", class: 'form-control'
+  
+  .form-group
+    = f.label :message, 'お問い合わせ内容*'
+    = f.text_area :message, size: '10x10', class: 'form-control'
+  
+  = f.submit '入力内容確認'

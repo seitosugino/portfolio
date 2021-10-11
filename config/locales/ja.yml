@@ -1,4 +1,15 @@
 ja:
+  enums: 
+    talk:
+      contributor:
+        customer: '会員'
+        shop: '店舗'
+        admin: '管理者'
+    customer:
+      privacy:
+        published:
+        closed:
+ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"

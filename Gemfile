@@ -80,3 +80,7 @@ gem 'html2slim'
 
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'impressionist', '~> 1.6.1'
+
+gem 'rails-i18n'
+gem 'enum_help'
+gem "dotenv-rails"

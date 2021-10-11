@@ -1,0 +1,51 @@
+.container.px-5.px-sm-0
+  .row
+    .col-md-12.mx-auto.text-center
+      table
+        tr
+          th.text-center
+            h3.mt-3
+              |お名前
+        tr
+          td
+            = @contact.name
+        tr
+          th.text-center
+            h3.mt-3
+              |電話番号
+        tr
+          td
+            = @contact.phone_number
+        tr
+          th.text-center
+            h3.mt-3
+              |メールアドレス
+        tr
+          td
+            = @contact.email
+        tr
+          th.text-center
+            h3.mt-3
+              |お問い合わせ内容
+        tr
+          td
+            div style='white-space: pre-wrap;'
+              = @contact.message
+    
+.mx-auto.text-center
+  = form_for(@contact) do |f|
+    = f.hidden_field :name
+    = f.hidden_field :email
+    = f.hidden_field :phone_number
+    = f.hidden_field :subject
+    = f.hidden_field :message
+    = f.submit '送信'
+br
+.mx-auto.text-center 
+  = form_for @contact, url: back_path do |f|
+    = f.hidden_field :name
+    = f.hidden_field :email
+    = f.hidden_field :phone_number
+    = f.hidden_field :subject
+    = f.hidden_field :message
+    = f.submit '入力画面に戻る'

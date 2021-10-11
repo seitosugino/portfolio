@@ -1,5 +1,5 @@
 = form_with model: group, local: true do |f|
-  .form-group.
+  .form-group
     = f.label :グループ名
     = f.text_field :name, class: 'form-control'
     
@@ -9,7 +9,7 @@
     
   .form-group
     = f.label :グループ画像
-    = f.attachment_field :image, class: "form-control-file"
+    = f.attachment_field :image, class: 'form-control-file'
     
   .form-group
     = f.submit
