@@ -15,27 +15,14 @@
             br
             = @customer.name
           td
-            .contents
-              br
-              a href = following_customer_path(@customer)
-                = @customer.following.count
-              br
-                |following
-              br
-            .contents
-              a href = followers_customer_path(@customer)
-                = @customer.followers.count
-              br
-                |followers
-              br
-                  
-                - if current_customer.following?(@customer)
-                  = form_with(model:current_customer.active_relationships.find_by(followed_id: @customer.id),html: { method: :delete }, local: true) do |f|
-                    = f.submit "フォローを外す"
-                - else
-                  = form_with(model:current_customer.active_relationships.build, local: true)do |f|
-                    = hidden_field_tag :followed_id, @customer.id
-                    = f.submit "フォローする"
+            .follow_count
+              = render 'relationships/follow_count', customer: @customer
+                - if customer_signed_in? && @user != current_customer
+            .follow_form
+              - if current_customer.following?(@customer)
+                = render 'relationships/unfollow', customer: @customer
+              - else
+                = render 'relationships/follow', customer: @customer
         tr
           td
             - unless @customer.id == current_customer.id

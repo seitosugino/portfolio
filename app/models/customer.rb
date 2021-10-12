@@ -36,13 +36,18 @@ class Customer < ApplicationRecord
       when 'old'
         return all.order(created_at: :ASC)
       when 'manypost'
-        return find(Post.group(:customer_id).order('count(customer_id) desc').pluck(:customer_id))
+        return left_joins(:posts).group("customers.id").order('count(posts.id) desc')
       when 'fewpost'
-        return find(Post.group(:customer_id).order('count(customer_id) asc').pluck(:customer_id))
+        return left_joins(:posts).group("customers.id").order('count(posts.id) asc')
       when 'manyfollower'
-        return find(Relationship.group(:customer_id).order('count(follower_id) desc').pluck(:customer_id))
+        return left_joins(:passive_relationships).group("customers.id").order("count(relationships.id) desc")
       when 'fewfollower'
-        return find(Relationship.group(:customer_id).order('count(follower_id) asc').pluck(:customer_id))
+        return left_joins(:passive_relationships).group("customers.id").order("count(relationships.id) asc")
+      when 'manylikes'
+        # likesもleft_joinsしようとするとcustomerと紐づくためjoinsで直接SQLを記載
+        return joins("LEFT OUTER JOIN posts ON customers.id = posts.customer_id LEFT OUTER JOIN likes ON posts.id = likes.post_id").group("posts.id").order("count(likes.id) desc")
+      when 'fewlikes'
+        return joins("LEFT OUTER JOIN posts ON customers.id = posts.customer_id LEFT OUTER JOIN likes ON posts.id = likes.post_id").group("posts.id").order("count(likes.id) asc")
     end
   end
   

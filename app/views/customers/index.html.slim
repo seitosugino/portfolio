@@ -12,23 +12,26 @@
           tr
             th
               - if request.fullpath.include?('old')
-                = link_to "名前▲", customers_path(keyword: 'new')
+                = link_to "登録順▲", customers_path(keyword: 'new')
               - else
-                = link_to "名前▼", customers_path(keyword: 'old')
+                = link_to "登録順▼", customers_path(keyword: 'old')
             th
-              - if request.fullpath.include?('few')
+              - if request.fullpath.include?('fewpost')
                 = link_to "記事数▲", customers_path(keyword: 'manypost')
               - else
                 = link_to "記事数▼", customers_path(keyword: 'fewpost')
             th
-              - if request.fullpath.include?('few')
+              - if request.fullpath.include?('fewfollower')
                 = link_to "フォロー数▲", customers_path(keyword: 'manyfollower')
               - else
                 = link_to "フォロー数▼", customers_path(keyword: 'fewfollower')
             th
-              | いいね数
+              - if request.fullpath.include?('fewlikes')
+                = link_to "いいね総数▲", customers_path(keyword: 'manylikes')
+              - else
+                = link_to "いいね総数▼", customers_path(keyword: 'fewlikes')
             th
-              | 閲覧数
+              | 閲覧総数
         tbody
           - @customers.each do |customers|
             tr

@@ -1,0 +1,2 @@
+= form_with(model:current_customer.active_relationships.find_by(followed_id: customer.id),html: { method: :delete }, remote: true) do |f|
+  = f.submit "フォローを外す"

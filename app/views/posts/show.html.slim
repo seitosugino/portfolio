@@ -12,14 +12,8 @@
             = l @post.created_at
         tr
           td.text-right
-            - if @post.liked_by?(current_customer)
-              = link_to post_like_path(@post), method: :delete do
-                |いいね♥
-                = @post.likes.count
-            -else
-              = link_to post_likes_path(@post), method: :post do
-                |いいね♡
-                = @post.likes.count
+              = render "likes/form", post: @post
+  
       table
         tr
           th
@@ -90,19 +84,7 @@
           
       h2.text-left
         |コメント
-      table
-        - @post.post_comments.each do |post_comment|
-          tr
-            td.text-left
-              = link_to customer_path(post_comment.customer_id)
-                = attachment_image_tag post_comment.customer.image, :image, :fill, 50, 50, fallback: "no_image.jpg"
-                = post_comment.customer.name
-              ==>
-              = post_comment.comment
-            th.text-left
-              = link_to "削除",post_post_comment_path(post_comment.post, post_comment), method: :delete
-            
-      = form_with(model:[@post, @post_comment],local: true) do |f|
-        = f.text_area :comment
-        br
-        = f.submit "送信する"
+      table.post_comment
+          = render 'post_comments/index', post: @post
+      
+      = render 'post_comments/form', post: @post, post_comment: @post_comment

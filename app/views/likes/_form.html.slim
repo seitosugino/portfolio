@@ -1,0 +1,12 @@
+            - if post.liked_by?(current_customer)
+              .liked
+                = link_to post_like_path(post, current_customer.likes.find_by(post_id: post.id)), method: :delete, remote: true do
+                  i.fas.fa-heart style='color: red;'
+                  = post.likes.count
+                  |いいね
+            -else
+              .likable
+                = link_to post_likes_path(post,current_customer.likes.build), method: :post, remote: true do
+                  i.fas.fa-heart
+                  = post.likes.count
+                  |いいね
