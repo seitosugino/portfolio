@@ -1,0 +1,10 @@
+- group_posts.each do |m|
+  tr
+    td
+      = m.content
+    td
+      = m.created_at.strftime('%Y-%m-%d %H:%M')
+    td
+      |(
+      = m.customer.name
+      |)

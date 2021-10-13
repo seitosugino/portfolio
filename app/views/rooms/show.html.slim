@@ -12,22 +12,10 @@
             th.text-center
               = e.customer.name 
         
-      table
+      table.message_index
         - if @messages.present?
-          - @messages.each do |m|
-            tr
-              td
-                = m.content
-              td
-                = m.created_at.strftime("%Y-%m-%d %H:%M")
-              td
-                |(
-                = m.customer.name
-                |)
+          = render "index", messages: @messages
         - else
           |メッセージはまだありません
       
-      = form_with model: @message, local: true do |f|
-        = f.text_field :content, placeholder: "メッセージを入力してください"
-        = f.hidden_field :room_id, value: @room.id
-        = f.submit "送信する"
+      = render "form", message: @message, room: @room

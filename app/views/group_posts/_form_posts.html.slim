@@ -1,0 +1,5 @@
+= form_with model: group_post, remoto: true do |f|
+  = f.text_field :content, class: "inputComment", placeholder: 'メッセージを入力してください'
+  = f.hidden_field :group_id, value: group.id
+  = f.hidden_field :customer_id, value: current_customer.id
+  = f.submit '送信する'
