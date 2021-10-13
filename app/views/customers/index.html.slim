@@ -7,8 +7,7 @@
       = link_to "グループを作成する", new_group_path
       ==>
       = link_to "グループ一覧", groups_path
-      table
-        thead
+      table.table.table-hover.table-inverse.text-left
           tr
             th
               - if request.fullpath.include?('old')
@@ -32,12 +31,12 @@
                 = link_to "いいね総数▼", customers_path(keyword: 'fewlikes')
             th
               | 閲覧総数
-        tbody
           - @customers.each do |customers|
             tr
               td.text-left
                 = link_to customer_path(customers) do
                   = attachment_image_tag customers, :image, :fill, 50, 50, fallback: "no_image.jpg"
+                  ==>
                   = customers.name
               td.text-left
                 = customers.posts.count

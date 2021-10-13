@@ -6,6 +6,9 @@
           |マイページ
         - else
           |ユーザー
+      
+      -if @customer == current_customer
+        = link_to "新規投稿", new_post_path
         
       table
         tr
@@ -25,8 +28,9 @@
                 = render 'relationships/follow', customer: @customer
         tr
           td
-            - unless @customer.id == current_customer.id
-              - if (current_customer.following? @customer) && (@customer.following? current_customer)
+            - if @customer.id == current_customer.id
+              = link_to "ダイレクトメッセージ一覧", rooms_path
+            -else
                 - if @isRoom == true
                   = link_to "ダイレクトメッセージ", room_path(@roomId)
                 - else

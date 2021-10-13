@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   resources :categories,only: [:show]
   resources :rates,only: [:show,:create]
   resources :messages, only: [:create]
-  resources :rooms, only: [:create,:show]
+  resources :rooms, only: [:index,:create,:show]
   resources :groups, except: [:destroy] do
     member do
       get :join

@@ -1,6 +1,31 @@
 class RoomsController < ApplicationController
   before_action :authenticate_customer!
   
+  def index
+    @rooms = Room.all
+    @customer = current_customer
+    @currentEntries = current_customer.entries
+    myRoomIds = []
+    
+    @currentCustomerEntry = Entry.where(customer_id: current_customer.id)
+    @customerEntry = Entry.where(customer_id: @customer.id)
+    unless @customer_id == current_customer.id
+      @currentCustomerEntry.each do |cu|
+        @customerEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @roomId = cu.room_id
+          end
+        end
+      end
+    end
+    
+    @currentEntries.each do | entry |
+      myRoomIds << entry.room.id
+    end
+    
+    @anotherEntries = Entry.where(room_id: myRoomIds).where('customer_id != ?', @customer.id)
+  end
+  
   def create
     @room = Room.create
     @entry1 = Entry.create(room_id: @room.id, customer_id: current_customer.id)

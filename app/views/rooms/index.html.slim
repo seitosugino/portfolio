@@ -1,0 +1,20 @@
+.container.px-5.px-sm-0
+  .row
+    .col-md-12.mx-auto.text-center
+      h3.mt-3
+        |ダイレクトメッセージ一覧
+      table.table.table-hover.table-inverse.text-left
+        tr
+          th
+            |名前
+          th
+            |メッセージ
+        tr
+          unless @anotherEntries == nil
+            - @anotherEntries.each do |e|
+              td
+                = attachment_image_tag(Message.find_by(id: e.room.message_ids.last).customer, :image, :fill, 50, 50, fallback: 'no-image-icon.jpg')
+                ==>
+                = link_to Message.find_by(id: e.room.message_ids.last).customer.name,room_path(@roomId)
+              td
+                = Message.find_by(id: e.room.message_ids.last).content
