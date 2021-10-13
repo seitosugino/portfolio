@@ -1,0 +1,18 @@
+#box
+  #images
+    .image1
+    .image2
+    .image3
+    .image4
+    .image5
+
+h3.text-center
+  |新着投稿
+.d-flex.flex-wrap.mt-3
+  - @posts.last(4).reverse_each do |posts|
+    .mx-auto.text-center
+      = link_to post_path(posts) do
+        .item-img-box
+          = attachment_image_tag posts, :title_image, size:"250x190"
+        .item-index-name.mt-2
+          =posts.title
