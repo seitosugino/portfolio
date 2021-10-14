@@ -3,28 +3,7 @@
     .col-md-12.mx-auto.text-center
       h3.mt-3
         |評価ページ
-      - if Rate.where(post_id: params[:id]).where(customer_id: current_customer.id).count << 1
-        br
-          #star
-            javascript:
-              $('#star').raty({
-                size: 36,
-                starOff:  "#{ asset_path('star-off.png') }",
-                starOn : "#{ asset_path('star-on.png') }",
-                starHalf: "#{ asset_path('star-half.png') }",
-                half: true,
-                readOnly: true,
-                score: #{ @post.avg_score},
-              });
-              
-            = @post.avg_score
-              
-            |（
-            = @post.score_count
-            |  件）
-          br
-            |評価済み
-      - else
+      - if Rate.where(post_id: params[:id]).where(customer_id: current_customer.id).count < 1
         = form_with model: @rate, url: rates_path, local:true do |f|
               = f.hidden_field :post_id, :value => @post.id
               = f.label :参考になった
@@ -45,6 +24,28 @@
               = f.text_area :comment
               br
               = f.submit
+      - else
+        br
+          #star
+            javascript:
+              $('#star').raty({
+                size: 36,
+                starOff:  "#{ asset_path('star-off.png') }",
+                starOn : "#{ asset_path('star-on.png') }",
+                starHalf: "#{ asset_path('star-half.png') }",
+                half: true,
+                readOnly: true,
+                score: #{ @post.avg_score},
+              });
+              
+            = @post.avg_score
+              
+            |（
+            = @post.score_count
+            |  件）
+          br
+            |評価済み
+        
     
       table
         tr
