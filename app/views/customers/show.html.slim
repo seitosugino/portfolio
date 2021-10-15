@@ -8,11 +8,16 @@
           |ユーザー
       
       -if @customer == current_customer
-        = link_to "新規投稿", new_post_path
+        table
+          tr
+            td
+              = link_to "新規投稿", new_post_path
+            td
+              = link_to "新規商品", new_item_path
         
       table
         tr
-          th.mx-auto.text-center
+          th.mx-auto.text-center style='width:50%'
             = attachment_image_tag @customer, :image, :fill, size:"120x120", fallback: 'no_image.jpg'
             br
             br
@@ -38,6 +43,11 @@
                     = fields_for @entry do |e|
                       = e.hidden_field :customer_id, value: @customer.id
                     = f.submit "チャットを始める"
+          td
+            - if @customer.id == current_customer.id
+              = link_to "注文一覧", orders_path
+            -else
+            
       h3.mt-3
             |自己紹介
       table

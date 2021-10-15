@@ -15,6 +15,9 @@ class Customer < ApplicationRecord
   has_many :group_posts, dependent: :destroy
   has_many :group_users, dependent: :destroy
   has_many :groups, through: :group_users
+  has_many :addresses, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
+  has_many :orders, dependent: :destroy
   attachment :image
   
   def follow(other_customer)

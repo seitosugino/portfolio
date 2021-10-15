@@ -1,0 +1,45 @@
+.container
+  .row
+    .col-sm-12.col-md-9.col-lg-6.px-5.px-sm-0.mx-auto
+      h3.mt-3
+        |新規投稿
+      = form_with model: @item, url: items_path, local:true do |f|
+        tr
+          th
+            br
+            | 商品画像
+            
+          td
+            br
+            = f.attachment_field :item_image
+        tr
+          th
+            br
+            br
+              | 商品名
+          td
+            = f.text_field :name, placeholder: "商品名"
+        tr
+          th
+            br
+            br
+              | 商品説明
+          td
+            = f.text_area :introduction, placeholder: "商品説明"
+        tr
+          th
+            br
+            br
+              | 税抜価格
+          td
+            = f.text_field :price, placeholder: "1000"
+        tr
+          th
+            br
+            br
+              | URL
+          td
+            = f.text_field :url, placeholder: "http://"
+        br
+        br
+        = f.submit "新規登録"

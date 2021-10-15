@@ -1,0 +1,29 @@
+.container
+  .row
+    .col-sm-12.col-md-8.col-lg-5.px-5.px-sm-0.mx-auto.item-show
+      .mx-3
+        br
+        = attachment_image_tag @item, :item_image, size:"500x380"
+      h3.mx-3
+        br
+        = @item.name
+      br
+        = @item.introduction
+      br
+        |  ￥
+        = @item.taxin_price.to_s(:delimited)
+        | （税込）
+      br
+      .mt-4
+        - if @item.is_active == true
+          = form_with model:@cart_item, url: cart_items_path, local:true do |f|
+            = f.hidden_field :item_id, value: @item.id
+              = flash[:order_item]
+            = f.select :amount, options_for_select((1..10).to_a), include_blank: "個数選択"
+            = f.submit "カートに入れる"
+        - else
+          | sold out
+        br
+        br
+        br
+        = link_to "一覧に戻る", items_path
