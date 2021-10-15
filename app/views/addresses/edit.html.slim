@@ -2,29 +2,7 @@
   .row
     .col-sm-12.col-md-10.col-lg-8.px-5.px-sm-0.mx-auto
       h3.mt-3
-        |配送先一覧/登録
-      - if @addresses.count == 0
-        table
-          tr
-            td
-              |登録されている配送先はありません
-      - else
-        - @addresses.each do |address|
-          table
-            tr
-              td
-                |〒
-                = address.postal_code
-            tr
-              td
-                = address.address
-            tr
-              td
-                = address.name
-              td
-                = link_to '編集', edit_address_path(current_customer.id,address.id), class: 'btn'
-                = link_to '削除', address_path(current_customer.id,address.id),method: :delete, class: 'btn'
-                
+        |配送先編集
       = form_with model: @address,url: addresses_path(current_customer.id),method: :post,local: true do |f|
         .table
           tr
