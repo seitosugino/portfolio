@@ -1,0 +1,16 @@
+td
+  = attachment_image_tag cart_item.item, :item_image, size:"100x70"
+  = cart_item.item.name
+td
+  = cart_item.item.taxin_price.to_s(:delimited)
+  |円
+td
+  = form_with model: cart_item, url: cart_item_path(cart_item), local: true do |f|
+    = f.hidden_field :item_id, value: cart_item.item.id
+    = f.number_field :amount, min: 1
+    = f.submit "変更"
+td.sub_price
+  = (cart_item.item.taxin_price*cart_item.amount).to_s(:delimited)
+  |円
+td
+  = link_to "削除", cart_item_path(cart_item), method: :delete, remote: true

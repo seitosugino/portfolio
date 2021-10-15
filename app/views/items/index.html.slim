@@ -1,0 +1,10 @@
+.container.px-5.px-sm-0
+  .row
+    .col-md-12.mx-auto.text-center
+      h3.mt-3
+        | 商品一覧（全 
+        = @amount
+        |  件）
+      .item-index.d-flex.flex-wrap.mt-3.mx-auto
+        = render "item_each", items: @items
+      = paginate @items

@@ -1,0 +1,80 @@
+.container
+  .row
+    .col-sm-12.col-md-10.col-lg-08.px-5.px-sm-0.mx-auto.text-center
+      h3.mt-3
+        |注文内容
+      table
+        tr
+          th style='width:30%'
+            |商品名
+          th style='width:20%'
+            |単価(税込)
+          th style='width:20%'
+            |数量
+          th style='width:20%'
+            |小計
+        - @order.order_items.each do |order|
+          tr
+            td
+              = order.item.name
+            td
+              = (order.item.taxin_price).to_s(:delimited)
+              |円
+            td
+              = order.amount
+              |個
+            td
+              = (order.item.taxin_price * order.amount).to_s(:delimited)
+              |円
+              
+      h5.mt-3
+        |請求情報
+      table
+        tr
+          th.text-center
+            |商品合計
+          td
+            = @total_price.to_s(:delimited)
+            |円
+        tr
+          th.text-center
+            |配送料
+          td
+            = (@order.shipping_cost).to_s(:delimited)
+            |円
+        tr
+          th.text-center
+            |ご請求額
+          td
+            = @total_payment.to_s(:delimited)
+            |円
+      h5.mt-3
+        |注文情報
+      table
+        tr
+          th.text-center style='width:50%'
+            |注文日
+          td
+            = @order.created_at.strftime("%Y/%m/%d").to_s
+        tr
+          th.text-center
+            |配送先
+          td
+            ul style='list-style: none;'
+              li
+                |〒
+                = @order.postal_code
+              li
+                = @order.address
+              li
+                = @order.name
+        tr
+          th.text-center
+            |支払方法
+          td
+            = @order.payment_method_i18n
+        tr
+          th.text-center
+            |ステータス
+          td
+            = @order.status_i18n

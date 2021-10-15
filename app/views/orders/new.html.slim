@@ -1,0 +1,44 @@
+.container
+  .row
+    .col-sm-12.col-md-10.col-lg-08.px-5.px-sm-0.mx-auto.text-center
+      h3.mt-3
+        |お客様情報入力
+      = form_with(model: @order,url: log_orders_path,method: :post, local: true) do |f|
+        h5.mt-3
+          |お支払方法
+        br
+          ul
+            li
+              = f.radio_button :payment_method, :銀行振込
+              |銀行振込
+        h5.mt-3
+          |お届け先
+        br
+          ul
+            li
+              = f.radio_button :address_select,0 ,checked: true
+              = f.label :address_select, "登録済み住所から選択", value: 0
+              br
+              = f.collection_select :oter_address, @addresses, :id, :full_address, include_blank: "選択して下さい"
+            li
+              br
+              = f.radio_button :address_select,1
+              = f.label :address_select,"新しいお届け先", value: 1
+              .text-center
+                table
+                  tr
+                    th.text-center
+                      = f.label "郵便番号（ハイフンなし）"
+                    td
+                      = f.text_field :postal_code
+                  tr
+                    th.text-center
+                      = f.label "住所"
+                    td
+                      = f.text_field :address
+                  tr
+                    th.text-center
+                      = f.label "宛名"
+                    td
+                      = f.text_field :name
+            = f.submit "確認画面へ進む"

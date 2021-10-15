@@ -35,4 +35,17 @@ Rails.application.routes.draw do
   post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
   post 'contacts/back', to: 'contacts#back', as: 'back'
   get 'done', to: 'contacts#done', as: 'done'
+  resources :items,only: [:index,:new,:create,:show,:edit,:update]
+  resources :cart_items,only: [:index,:create,:show,:edit,:update] do
+    collection do
+      delete :cart_destroy
+    end
+  end
+  resources :orders,only: [:index,:new,:create,:show,:edit,:update] do
+    collection do
+      post :log
+      get :thanks
+    end
+  end
+  resources :addresses,only: [:index,:create,:edit,:update,:destroy]
 end
