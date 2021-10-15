@@ -1,3 +1,2 @@
 $(".follow_form").html("<%= j(render 'relationships/follow', customer: @customer) %>");
 $(".follow_count").html("<%= j(render 'relationships/follow_count', customer: @customer) %>");
-$(".message").html("<%= j(render 'relationships/message', customer: @customer, isRoom: @isRoom, roomId: @roomId, entry: @entry, room: @room) %>");

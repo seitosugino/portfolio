@@ -10,10 +10,10 @@
       -if @customer == current_customer
         table
           tr
-            td
-              = link_to "新規投稿", new_post_path
-            td
-              = link_to "新規商品", new_item_path
+            td.text-right
+              = link_to "新規投稿", new_post_path, class: 'btn'
+            td.text-left
+              = link_to "新規商品", new_item_path, class: 'btn'
         
       table
         tr
@@ -34,10 +34,10 @@
         tr
           td
             - if @customer.id == current_customer.id
-              = link_to "ダイレクトメッセージ一覧", rooms_path
+              = link_to "ダイレクトメッセージ一覧", rooms_path, class: 'btn'
             -else
                 - if @isRoom == true
-                  = link_to "ダイレクトメッセージ", room_path(@roomId)
+                  = link_to "ダイレクトメッセージ", room_path(@roomId), class: 'btn'
                 - else
                   = form_with model: @room, local: true do |f|
                     = fields_for @entry do |e|
@@ -45,7 +45,8 @@
                     = f.submit "チャットを始める"
           td
             - if @customer.id == current_customer.id
-              = link_to "注文一覧", orders_path
+              = link_to "注文一覧", orders_path, class: 'btn'
+              = link_to "住所登録", addresses_path, class: 'btn'
             -else
             
       h3.mt-3
@@ -60,3 +61,7 @@
         |投稿一覧
       .d-flex.flex-wrap.mt-3.mx-auto
         = render "posts/post_each", posts: @posts
+      h3.mt-3
+        |商品一覧
+      .d-flex.flex-wrap.mt-3.mx-auto
+        = render "items/item_each", items: @items

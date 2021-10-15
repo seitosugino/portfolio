@@ -15,6 +15,7 @@ class CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @posts = @customer.posts
+    @items = @customer.items
     
     @currentCustomerEntry = Entry.where(customer_id: current_customer.id)
     @customerEntry = Entry.where(customer_id: @customer.id)
