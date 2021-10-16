@@ -33,6 +33,14 @@ class Customer < ApplicationRecord
     following.include?(other_customer)
   end
   
+  def self.search(search)
+    if search
+      Customer.where(['name LIKE ?', '%'+search+'%'])
+    else
+      Customer.all
+    end
+  end
+  
   def self.sort(selection)
     case selection
       when 'new'

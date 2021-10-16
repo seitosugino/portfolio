@@ -1,3 +1,14 @@
-= form_tag posts_path, :method => 'get' do
-  = text_field_tag :search, params[:search], class:"head-search"
-  = submit_tag "検索", :title => nil, class:"head-search-btn"
+- if request.fullpath.include?('/items')
+  = form_tag items_path, :method => 'get' do
+    = text_field_tag :search, params[:search], class:"head-search"
+    = submit_tag "検索", :title => nil, class:"head-search-btn"
+
+- elsif request.fullpath.include?('/customers')
+  = form_tag customers_path, :method => 'get' do
+    = text_field_tag :search, params[:search], class:"head-search"
+    = submit_tag "検索", :title => nil, class:"head-search-btn"
+
+- else
+  = form_tag posts_path, :method => 'get' do
+    = text_field_tag :search, params[:search], class:"head-search"
+    = submit_tag "検索", :title => nil, class:"head-search-btn"

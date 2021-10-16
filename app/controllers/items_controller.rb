@@ -15,7 +15,8 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
-    if @item.save
+    @item.customer_id = current_customer.id
+    if @item.save!
       flash[:notice] = "#{@item.name}を登録しました"
       redirect_to item_path(@item)
     else

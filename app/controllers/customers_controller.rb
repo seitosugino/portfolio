@@ -7,7 +7,7 @@ class CustomersController < ApplicationController
       @customers = Customer.sort(params[:keyword])
       @customers = Kaminari.paginate_array(@customers).page(params[:page]).per(10)
     else
-      @customers = Customer.all.page(params[:page]).per(10)
+      @customers = Customer.search(params[:search]).order(created_at: :desc).page(params[:page]).per(10)
     end
     
   end
