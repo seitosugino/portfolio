@@ -1,13 +1,11 @@
 .contents
   br
-  a href = following_customer_path(@customer)
-    = @customer.following.count
+  = link_to @customer.following.count, following_customer_path(@customer), class: 'btn', style: 'color:black;'
   br
     |following
   br
 .contents
-  a href = followers_customer_path(@customer)
-    = @customer.followers.count
+  = link_to @customer.followers.count, followers_customer_path(@customer), class: 'btn', style: 'color:black;'
   br
     |followers
   br

@@ -16,13 +16,13 @@
                                  ['閲覧数が多い順', 'manyimpressions'],
                                  ['閲覧数が少ない順', 'fewimpressions'],
                                 ]
-        = form.submit "並び替え"
+        = form.submit '並び替え'
       br
       - @categories.each do |category|
-        = link_to category.name, category_path(category), class: "mx-3"
+        = link_to category.name, category_path(category), class: 'mx-3', style: 'color:black;'
        
       .d-flex.flex-wrap.mt-3.mx-auto
-        = render "post_each", posts: @posts
+        = render 'post_each', posts: @posts
       = paginate @posts
       
       h3.mt-3
@@ -30,4 +30,4 @@
       br
       
       - @tags.each do |tag|
-        = link_to "#{tag.name}(#{tag.taggings_count})", posts_path(tag: tag.name), class: "mx-2"
+        = link_to "#{tag.name}(#{tag.taggings_count})", posts_path(tag: tag.name), class: "mx-2", style: 'color:black;'

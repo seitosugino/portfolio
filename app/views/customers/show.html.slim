@@ -11,9 +11,9 @@
         table
           tr
             td.text-right
-              = link_to "新規投稿", new_post_path, class: 'btn'
+              = link_to "新規投稿", new_post_path, class: 'btn', style: 'color:black;'
             td.text-left
-              = link_to "新規商品", new_item_path, class: 'btn'
+              = link_to "新規商品", new_item_path, class: 'btn', style: 'color:black;'
         
       table
         tr
@@ -34,10 +34,10 @@
         tr
           td
             - if @customer.id == current_customer.id
-              = link_to "ダイレクトメッセージ一覧", rooms_path, class: 'btn'
+              = link_to "ダイレクトメッセージ一覧", rooms_path, class: 'btn', style: 'color:black;'
             -else
                 - if @isRoom == true
-                  = link_to "ダイレクトメッセージ", room_path(@roomId), class: 'btn'
+                  = link_to "ダイレクトメッセージ", room_path(@roomId), class: 'btn', style: 'color:black;'
                 - else
                   = form_with model: @room, local: true do |f|
                     = fields_for @entry do |e|
@@ -45,8 +45,8 @@
                     = f.submit "チャットを始める"
           td
             - if @customer.id == current_customer.id
-              = link_to "注文一覧", orders_path, class: 'btn'
-              = link_to "住所登録", addresses_path, class: 'btn'
+              = link_to "注文一覧", orders_path, class: 'btn', style: 'color:black;'
+              = link_to "住所登録", addresses_path, class: 'btn', style: 'color:black;'
             -else
             
       h3.mt-3

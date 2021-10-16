@@ -4,39 +4,38 @@
       h3.mt-3
         | 投稿者一覧
       br
-      = link_to "グループを作成する", new_group_path
+      = link_to "グループを作成する", new_group_path, style: 'color:black;'
       ==>
-      = link_to "グループ一覧", groups_path
+      = link_to "グループ一覧", groups_path, style: 'color:black;'
       table.table.table-hover.table-inverse.text-left
           tr
             th
               - if request.fullpath.include?('old')
-                = link_to "登録順▲", customers_path(keyword: 'new')
+                = link_to "登録順▲", customers_path(keyword: 'new'), style: 'color:black;'
               - else
-                = link_to "登録順▼", customers_path(keyword: 'old')
+                = link_to "登録順▼", customers_path(keyword: 'old'), style: 'color:black;'
             th
               - if request.fullpath.include?('fewpost')
-                = link_to "記事数▲", customers_path(keyword: 'manypost')
+                = link_to "記事数▲", customers_path(keyword: 'manypost'), style: 'color:black;'
               - else
-                = link_to "記事数▼", customers_path(keyword: 'fewpost')
+                = link_to "記事数▼", customers_path(keyword: 'fewpost'), style: 'color:black;'
             th
               - if request.fullpath.include?('fewfollower')
-                = link_to "フォロー数▲", customers_path(keyword: 'manyfollower')
+                = link_to "フォロー数▲", customers_path(keyword: 'manyfollower'), style: 'color:black;'
               - else
-                = link_to "フォロー数▼", customers_path(keyword: 'fewfollower')
+                = link_to "フォロー数▼", customers_path(keyword: 'fewfollower'), style: 'color:black;'
             th
               - if request.fullpath.include?('fewlikes')
-                = link_to "いいね総数▲", customers_path(keyword: 'manylikes')
+                = link_to "いいね総数▲", customers_path(keyword: 'manylikes'), style: 'color:black;'
               - else
-                = link_to "いいね総数▼", customers_path(keyword: 'fewlikes')
+                = link_to "いいね総数▼", customers_path(keyword: 'fewlikes'), style: 'color:black;'
             th
               | 閲覧総数
           - @customers.each do |customers|
             tr
               td.text-left
-                = link_to customer_path(customers) do
+                = link_to customer_path(customers), style: 'color:black;' do
                   = attachment_image_tag customers, :image, :fill, 50, 50, fallback: "no_image.jpg"
-                  ==>
                   = customers.name
               td.text-left
                 = customers.posts.count

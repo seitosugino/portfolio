@@ -1,10 +1,11 @@
-footer
+footer.fixed-bottom
   nav.navbar.navbar-expand-lg.navbar-dark.navbar-title
     .container
       .row
-        .col-12.my-3
+        .col-12
           .d-flex.justify-content-between.bd-highlight
-            .text-center
-              = link_to "about", about_path
-              |  ｜ 
-              = link_to "お問い合わせ", new_contact_path, class:"link3"
+             ul.navbar-nav.ml-auto.text-center
+              li
+                = link_to "about", about_path, class: 'fas nav-link text-light'
+              li
+                = link_to "お問い合わせ", new_contact_path, class: 'fas nav-link text-light'

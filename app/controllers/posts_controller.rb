@@ -7,6 +7,9 @@ class PostsController < ApplicationController
     @rate = Post.find(Rate.group(:post_id).order('avg(star) desc').limit(4).pluck(:post_id))
   end
   
+  def about
+  end
+  
   def index
     selection = params[:keyword]
     if params[:tag]
