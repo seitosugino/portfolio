@@ -11,6 +11,11 @@
         = link_to item_path(item), style: 'color:black;' do
           tr
             td
+              |投稿日:
+              = item.created_at.strftime('%Y/%m/%d %H:%M:%S')
+            br
+          tr
+            td
               = attachment_image_tag item, :item_image, size:"230x170"
           tr
             td.mt-1
@@ -22,3 +27,6 @@
               = item.taxin_price.to_s(:delimited)
               - if item.is_active == false
                 | sold out
+            -if item.customer == current_customer
+              br
+              = link_to "編集",edit_item_path(item), class: 'btn', style: 'color:black;'

@@ -20,5 +20,5 @@
         = link_to genre.name, genre_path(genre), class: 'mx-3', style: 'color:black;'
         
       .item-index.d-flex.flex-wrap.mt-3.mx-auto
-        = render "item_each", items: @items
+        = render "item_each", items: @items, customer: @customer
       = paginate @items

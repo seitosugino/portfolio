@@ -61,6 +61,7 @@ class PostsController < ApplicationController
   
   def edit
     @post = Post.find(params[:id])
+    @tags = ActsAsTaggableOn::Tag.all
   end
   
   def update

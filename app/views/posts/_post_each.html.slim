@@ -8,11 +8,11 @@
   - posts.each do |post|
     .mx-4.mt-3.w-20
       .table
-        = link_to post_path(post) do
+        = link_to post_path(post), style: 'color:black;' do
           tr
             td
               |投稿日:
-              = l post.created_at
+              = post.created_at.strftime('%Y/%m/%d %H:%M:%S')
             br
           tr
             td
@@ -35,3 +35,6 @@
         td
           |閲覧数 : 
           = post.impressions_count
+        -if post.customer == current_customer
+        br
+          = link_to "編集",edit_post_path(post), class: 'btn', style: 'color:black;'

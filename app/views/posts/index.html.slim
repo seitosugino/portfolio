@@ -22,7 +22,7 @@
         = link_to category.name, category_path(category), class: 'mx-3', style: 'color:black;'
        
       .d-flex.flex-wrap.mt-3.mx-auto
-        = render 'post_each', posts: @posts
+        = render 'post_each', posts: @posts, customer: @customer
       = paginate @posts
       
       h3.mt-3

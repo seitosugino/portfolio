@@ -1,0 +1,74 @@
+.container
+  .row
+    .col-sm-12.col-md-9.col-lg-6.px-5.px-sm-0.mx-auto
+      h3.mt-3
+        |投稿編集
+      = form_with model:@post, local:true do |f|
+        .table
+          tr
+            th
+              | カテゴリー
+            td
+              br
+                = f.collection_select :category_id, Category.all, :id, :name, prompt: "-- 選択してください --"
+            th
+              br
+                | タイトル
+            td
+              = f.text_field :title, class: 'form-control', placeholder:"タイトル"
+          tr
+            th
+              | 概要説明
+            td
+              = f.text_area :introduction, class: "form-control", placeholder:"概要説明"
+          tr
+            th
+              | トップ画像
+            td
+              = f.attachment_field :title_image
+          tr
+            th
+              br
+                | 本文
+            td
+              = f.text_area :body, class: "form-control", placeholder:"本文"
+          tr
+            th
+              | 本文画像
+            td
+              = f.attachment_field :body_image
+          tr
+            th
+              br
+                | URL
+            td
+              = f.text_field :url, class: 'form-control', placeholder:"URL"
+          tr
+            th
+              | タグ
+            td
+              br
+                = f.text_field :tag_list, value: @post.tag_list.join(',')
+              br
+                タグ表示
+                  - @tags.each do |tag|
+                   = "#{tag.name},"
+            th
+              br
+              | 評価
+            td
+              br
+                #star
+                  = f.hidden_field :star, id: :review_star, class:'form-control'
+
+                  javascript:
+                    $('#star').raty({
+                      size     : 36,
+                      starOff:  "#{ asset_path('star-off.png') }",
+                      starOn : "#{ asset_path('star-on.png') }",
+                      starHalf: "#{ asset_path('star-half.png') }",
+                      scoreName: 'post[star]',
+                      half: true,
+                    });
+
+        = f.submit "新規投稿"
