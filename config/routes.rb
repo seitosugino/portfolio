@@ -48,4 +48,5 @@ Rails.application.routes.draw do
     end
   end
   resources :addresses,only: [:index,:create,:edit,:update,:destroy]
+  resources :genres,only: [:show]
 end

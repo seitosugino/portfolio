@@ -6,18 +6,19 @@
           |投稿はありません
 -else
   - items.each do |item|
-    .table
-      = link_to item_path(item), style: 'color:black;' do
-        tr
-          td
-            = attachment_image_tag item, :item_image, size:"230x170"
-        tr
-          td.mt-1
-            br
-              = item.name
-        tr
-          td
-            |  ￥
-            = item.taxin_price.to_s(:delimited)
-            - if item.is_active == false
-              | sold out
+    .mx-4.mt-3.w-20
+      .table
+        = link_to item_path(item), style: 'color:black;' do
+          tr
+            td
+              = attachment_image_tag item, :item_image, size:"230x170"
+          tr
+            td.mt-1
+              br
+                = item.name
+          tr
+            td
+              |  ￥
+              = item.taxin_price.to_s(:delimited)
+              - if item.is_active == false
+                | sold out

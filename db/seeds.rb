@@ -10,15 +10,29 @@ AdminUser.create!(email: 'admin@example.com', password: '123456', password_confi
 Customer.create!(email: 'a@a', password: '123456', password_confirmation: '123456', name: 'tesuto', introduction: 'テスト') if Rails.env.development?
 Customer.create!(email: 't@t', password: '123456', password_confirmation: '123456', name: 'テスト', introduction: 'テスト') if Rails.env.development?
 
-Item.create!(customer_id: '1',name: 'tesuto', introduction: 'tesuto', price: 500, is_active: true, image: open('./app/assets/images/.jpg'))
-Item.create!(customer_id: '2',name: 'tesuto2', introduction: 'tesuto', price: 1000, is_active: true, image: open('./app/assets/images/.jpg'))
+Genre.create!(name: '周辺機器')
+Genre.create!(name: 'DIY')
+Genre.create!(name: 'その他')
+
+item = Item.create!(customer_id: 1,genre_id: 1,name: 'tesuto',introduction: 'tesuto', price: 500, is_active: true, url: 'tesuto', item_image_id: open('./app/assets/images/no_image.jpg'))
+File.open("./app/assets/images/no_image.jpg") do |file|
+  item.item_image = file
+end
+item.item_image_id = item.item_image.id
+item.save
+
+item = Item.create!(customer_id: 2, genre_id: 2,name: 'tesuto2',introduction: 'tesuto', price: 1000, is_active: true, url: 'tesuto', item_image_id: open('./app/assets/images/no_image.jpg'))
+File.open("./app/assets/images/no_image.jpg") do |file|
+  item.item_image = file
+end
+item.item_image_id = item.item_image.id
+item.save
 
 Category.create!(id: '1',name: 'プログラミング')
 Category.create!(id: '2',name: 'ガジェット')
 Category.create!(id: '3',name: '生活')
 Category.create!(id: '4',name: 'ニュース')
 Category.create!(id: '5',name: 'その他')
-
 
 
 array = %w(スマートフォン パソコン イヤホン 料理 CSS Python Rails)

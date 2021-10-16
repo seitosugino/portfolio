@@ -30,6 +30,13 @@
           th
             br
             br
+              | ジャンル
+          td    
+            = f.collection_select :genre_id, Genre.all, :id, :name, prompt: "-- 選択してください --"
+        tr
+          th
+            br
+            br
               | 税抜価格
           td
             = f.text_field :price, placeholder: "1000"

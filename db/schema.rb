@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_14_101335) do
+ActiveRecord::Schema.define(version: 2021_10_16_112816) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -98,6 +98,12 @@ ActiveRecord::Schema.define(version: 2021_10_14_101335) do
     t.index ["room_id"], name: "index_entries_on_room_id"
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "group_posts", force: :cascade do |t|
     t.integer "group_id"
     t.integer "customer_id"
@@ -154,6 +160,7 @@ ActiveRecord::Schema.define(version: 2021_10_14_101335) do
 
   create_table "items", force: :cascade do |t|
     t.integer "customer_id"
+    t.integer "genre_id"
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
@@ -163,6 +170,7 @@ ActiveRecord::Schema.define(version: 2021_10_14_101335) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_items_on_customer_id"
+    t.index ["genre_id"], name: "index_items_on_genre_id"
   end
 
   create_table "likes", force: :cascade do |t|

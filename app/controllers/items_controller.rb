@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   def index
     @items = Item.search(params[:search]).page(params[:page]).per(8)
+    @genres = Genre.all
     @amount = @items.total_count
   end
   
