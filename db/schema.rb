@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_16_112816) do
+ActiveRecord::Schema.define(version: 2021_10_16_145121) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -169,6 +169,7 @@ ActiveRecord::Schema.define(version: 2021_10_16_112816) do
     t.string "url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "impressions_count", default: 0
     t.index ["customer_id"], name: "index_items_on_customer_id"
     t.index ["genre_id"], name: "index_items_on_genre_id"
   end

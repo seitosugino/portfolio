@@ -6,6 +6,16 @@
         = @amount
         |  件）
       br
+      = form_with model: @item, url: items_path, method: :get, local: true do |form|
+        = form.select :keyword,[ ['投稿が新しい順', 'new'],
+                                 ['投稿が古い順', 'old'],
+                                 ['購入数が多い順', 'manybuys'],
+                                 ['購入数が少ない順', 'fewbuys'],
+                                 ['閲覧数が多い順', 'manyimpressions'],
+                                 ['閲覧数が少ない順', 'fewimpressions'],
+                                ]
+        = form.submit '並び替え'
+      br
       - @genres.each do |genre|
         = link_to genre.name, genre_path(genre), class: 'mx-3', style: 'color:black;'
         

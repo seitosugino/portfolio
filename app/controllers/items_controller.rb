@@ -1,6 +1,12 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.search(params[:search]).page(params[:page]).per(8)
+    selection = params[:keyword]
+    if params[:keyword]
+      @items = Item.sort(params[:keyword])
+      @items = Kaminari.paginate_array(@items).page(params[:page]).per(8)
+    else
+      @items = Item.search(params[:search]).page(params[:page]).per(8)
+    end
     @genres = Genre.all
     @amount = @items.total_count
   end
