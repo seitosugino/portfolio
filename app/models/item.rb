@@ -3,11 +3,20 @@ class Item < ApplicationRecord
   belongs_to :genre
   has_many :cart_items, dependent: :destroy
   has_many :order_items, dependent: :destroy
+  has_many :item_likes, dependent: :destroy
   is_impressionable counter_cache: true
   attachment :item_image
   
   def taxin_price
     (price*1.10).round
+  end
+  
+  def already_liked?(item)
+    self.item_likes.exists?(item_id: item.id)
+  end
+  
+  def liked_by?(customer)
+    item_likes.where(customer_id: customer.id).exists?
   end
   
   def self.search(search)

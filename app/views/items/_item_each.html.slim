@@ -18,15 +18,21 @@
             td
               = attachment_image_tag item, :item_image, size:"230x170"
           tr
-            td.mt-1
-              br
-                = item.name
-          tr
             td
+              p.mt-1
+                = item.name
+        tr
+          td
+            p.mt-1
               |  ￥
               = item.taxin_price.to_s(:delimited)
               - if item.is_active == false
                 | sold out
+          tr
+            td
+              = item.item_likes.count
+              |いいね
+              
             -if item.customer == current_customer
               br
               = link_to "編集",edit_item_path(item), class: 'btn', style: 'color:black;'

@@ -2,6 +2,13 @@
   .row
     .col-sm-12.col-md-10.col-lg-08.px-5.px-sm-0.mx-auto.text-center
       .mx-3
+        .text-right
+          br
+          |投稿日:
+          = @item.created_at.strftime('%Y/%m/%d %H:%M:%S')
+        br
+        .text-right
+          = render "item_likes/form", item: @item
         br
         = attachment_image_tag @item, :item_image, size:"500x380"
       h3.mx-3
@@ -23,6 +30,7 @@
             = f.submit "カートに入れる"
         - else
           | sold out
+        
         br
         br
         br

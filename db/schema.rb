@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_16_145121) do
+ActiveRecord::Schema.define(version: 2021_10_17_135753) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -156,6 +156,15 @@ ActiveRecord::Schema.define(version: 2021_10_16_145121) do
     t.index ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
     t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
     t.index ["user_id"], name: "index_impressions_on_user_id"
+  end
+
+  create_table "item_likes", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_item_likes_on_customer_id"
+    t.index ["item_id"], name: "index_item_likes_on_item_id"
   end
 
   create_table "items", force: :cascade do |t|
