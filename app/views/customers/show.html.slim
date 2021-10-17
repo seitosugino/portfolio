@@ -50,18 +50,20 @@
               = link_to "住所登録", addresses_path, class: 'btn', style: 'color:black;'
             -else
             
-      h3.mt-3
-            |自己紹介
+      h3.mt-5
+        |自己紹介
       - if @customer.introduction == nil
         .container.px-5.px-sm-0
           .row
             .col-md-12.mx-auto.text-center
               h5.mt-3
+                br
                 |投稿はありません
       -else
         table
           tr
             td
+              br
               = @customer.introduction
             
     .col-sm-12.col-md-12.col-lg-12.px-5.px-sm-0.mx-auto.text-center

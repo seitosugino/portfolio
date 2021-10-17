@@ -6,7 +6,7 @@
     .image4
     .image5
 
-h3.text-center
+h3.text-center.mt-5
   |新着投稿
 .d-flex.flex-wrap.mt-3
   - @posts.last(4).reverse_each do |posts|
@@ -18,59 +18,16 @@ h3.text-center
           = attachment_image_tag posts, :title_image, size:"250x190"
         .item-index-name.mt-2
           =posts.title
-
 h3.text-center.mt-5
-  |閲覧数ランキング
-.d-flex.flex-wrap.mt-3
-  - @impression.each.with_index(1) do |posts, i|
-    .mx-auto.text-center
-      h5
-        |第
-        = i
-        |位
-      = link_to post_path(posts), style: 'color:black;' do
-        .item-img-box
-          = attachment_image_tag posts, :title_image, size:"250x190"
-        .item-index-name.mt-2
-          =posts.title
-      .item-index-name.mt-2
-        |閲覧数 : 
-        = posts.impressions_count
-        
-- unless @rate == []  
-  h3.text-center.mt-5
-    |評価ランキング
-  .d-flex.flex-wrap.mt-3
-    - @rate.each.with_index(1) do |posts, i|
-      .mx-auto.text-center
-        h5
-          |第
-          = i
-          |位
-        = link_to post_path(posts), style: 'color:black;' do
-          .item-img-box
-            = attachment_image_tag posts, :title_image, size:"250x190"
-          .item-index-name.mt-2
-            = posts.title
-        .item-index-name.mt-2
-            = posts.avg_score
-            |点
+  |ランキング機能
+h5.text-center.mt-5
+  |気になるランキングを選択してください
 
-- unless @like == []
-  h3.text-center.mt-5
-    |いいねランキング
-  .d-flex.flex-wrap.mt-3
-    - @like.each.with_index(1) do |posts, i|
-      .mx-auto.text-center
-        h5
-          |第
-          = i
-          |位
-        = link_to post_path(posts), style: 'color:black;' do
-          .item-img-box
-            = attachment_image_tag posts, :title_image, size:"250x190"
-          .item-index-name.mt-2
-            = posts.title
-        .item-index-name.mt-2
-            = posts.likes.count
-            |いいね
+h5.text-center.mt-5
+  = form_with url: root_path, method: :get, local: true do |form|
+          = form.select :keyword,[ ['閲覧数の多い記事ランキング', 'rank1'],
+                                   ['平均評価の高い記事ランキング', 'rank2'],
+                                   ['いいね数の多い記事ランキング', 'rank3'],
+                                  ]
+          = form.submit 'ランキングを表示'
+= render 'rank', posts: @posts, impression: @impression, rate: @rate, like: @like
