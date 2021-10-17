@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   post 'contacts/back', to: 'contacts#back', as: 'back'
   get 'done', to: 'contacts#done', as: 'done'
   resources :items,only: [:index,:new,:create,:show,:edit,:update]
-  resources :cart_items,only: [:index,:create,:show,:edit,:update] do
+  resources :cart_items,only: [:index,:create,:show,:edit,:update, :destroy] do
     collection do
       delete :cart_destroy
     end

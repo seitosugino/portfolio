@@ -13,11 +13,11 @@ class CartItemsController < ApplicationController
         cart_item.amount += params[:cart_item][:amount].to_i
         cart_item.save
         flash[:notice] = "#{@cart_item.item.name}の数量を変更しました"
-        redirect_to　cart_items_path(@cart_item)
+        redirect_to cart_items_path(@cart_item)
       else
         @cart_item.save
         flash[:notice] = "#{@cart_item.item.name}をカートに追加しました"
-        redirect_to　cart_items_path(@cart_item)
+        redirect_to cart_items_path(@cart_item)
       end
     else
       flash[:order_item] = "カートに追加するにはログインしてください"
@@ -36,7 +36,6 @@ class CartItemsController < ApplicationController
       flash.now[:notice] = "#{@cart_item.item.name}の数量を変更しました"
       @cart_items = current_customer.cart_items.all
       @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
-      redirect_to request.referer
     end
   end
 
@@ -46,14 +45,13 @@ class CartItemsController < ApplicationController
     if @cart_item.destroy
       flash.now[:notice] = "#{@cart_item.item.name}をカートから削除しました"
       @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
-      redirect_to request.referer
     end
   end
 
   def cart_destroy
     @cart_items = current_customer.cart_items.all
     if @cart_items.destroy_all
-      redirect_to　cart_items_path(@cart_item)
+      redirect_to cart_items_path(@cart_item)
     end
   end
 
