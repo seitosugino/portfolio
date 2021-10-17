@@ -1,0 +1,12 @@
+            - if item.liked_by?(current_customer)
+              .liked
+                = link_to item_item_like_path(item, current_customer.item_likes.find_by(item_id: item.id)), method: :delete, remote: true do
+                  i.fas.fa-heart style='color: red;'
+                  = item.item_likes.count
+                  |いいね
+            -else
+              .likable
+                = link_to item_item_likes_path(item,current_customer.item_likes.build), method: :post, remote: true do
+                  i.fas.fa-heart
+                  = item.item_likes.count
+                  |いいね

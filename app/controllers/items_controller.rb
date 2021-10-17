@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  
   def index
     selection = params[:keyword]
     if params[:keyword]
@@ -10,16 +11,17 @@ class ItemsController < ApplicationController
     @genres = Genre.all
     @amount = @items.total_count
   end
-  
+
   def show
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
+    @like = ItemLike.new
   end
-  
+
   def new
     @item = Item.new
   end
-  
+
   def create
     @item = Item.new(item_params)
     @item.customer_id = current_customer.id
@@ -30,11 +32,11 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
     @item = Item.find(params[:id])
   end
-  
+
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
@@ -44,9 +46,9 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-  
+
   private
-  
+
   def item_params
     params.require(:item).permit(:item_image, :name, :introduction, :price, :is_active, :url)
   end

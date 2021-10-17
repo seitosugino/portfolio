@@ -9,7 +9,7 @@
         tr.text-right
           td
             |投稿日:
-            = l @post.created_at
+            = @post.created_at.strftime('%Y/%m/%d %H:%M:%S')
         tr
           td.text-right
               = render "likes/form", post: @post
