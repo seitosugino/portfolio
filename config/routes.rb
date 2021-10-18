@@ -37,6 +37,9 @@ Rails.application.routes.draw do
   get 'done', to: 'contacts#done', as: 'done'
   resources :items,only: [:index,:new,:create,:show,:edit,:update] do
     resources :item_likes, only: [:create, :destroy]
+    member do
+      get :rates
+    end
   end
   resources :cart_items,only: [:index,:create,:show,:edit,:update, :destroy] do
     collection do
@@ -51,4 +54,5 @@ Rails.application.routes.draw do
   end
   resources :addresses,only: [:index,:create,:edit,:update,:destroy]
   resources :genres,only: [:show]
+  resources :item_rates,only: [:show,:create]
 end

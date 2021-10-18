@@ -1,0 +1,2 @@
+module ItemRatesHelper
+end

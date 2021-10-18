@@ -30,6 +30,12 @@
                 | sold out
           tr
             td
+              |レビュー
+              = item.avg_score
+              |点
+              |（
+              = item.score_count
+              |  件）
               = item.item_likes.count
               |いいね
               

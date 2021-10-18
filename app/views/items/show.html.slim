@@ -32,7 +32,35 @@
           | sold out
         
         br
-      h5.mt-3
+        table
+          tr
+            th.text-center
+              h5
+                |商品レビュー
+              br
+              #star
+  
+              
+                javascript:
+                  $('#star').raty({
+                    size: 36,
+                    starOff:  "#{ asset_path('star-off.png') }",
+                    starOn : "#{ asset_path('star-on.png') }",
+                    starHalf: "#{ asset_path('star-half.png') }",
+                    half: true,
+                    readOnly: true,
+                    score: #{ @item.avg_score},
+                  });
+                
+                = @item.avg_score
+                
+                |（
+                = @item.score_count
+                |  件）
+                = link_to "レビューをする", item_rate_path(@item), style: 'color:black;'
+                |   
+                = link_to "レビューを一覧で見る", rates_item_path, style: 'color:black;'
+        h5.mt-3
         |URL
         br
         = link_to @item.url,@item.url

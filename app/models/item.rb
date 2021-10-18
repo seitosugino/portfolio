@@ -4,6 +4,7 @@ class Item < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :order_items, dependent: :destroy
   has_many :item_likes, dependent: :destroy
+  has_many :item_rates, dependent: :destroy
   is_impressionable counter_cache: true
   attachment :item_image
   
@@ -17,6 +18,18 @@ class Item < ApplicationRecord
   
   def liked_by?(customer)
     item_likes.where(customer_id: customer.id).exists?
+  end
+  
+  def avg_score
+    unless self.item_rates.empty?
+      item_rates.average(:star).round(1)
+    else
+      0.0
+    end
+  end
+  
+  def score_count
+      item_rates.count
   end
   
   def self.search(search)
