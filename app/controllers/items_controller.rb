@@ -46,6 +46,13 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
+  
+  def rates
+    @item = Item.find(params[:id])
+    @rates = @item.item_rates
+    @customer = Customer.where(id: params[:id])
+    render 'show_rates'
+  end
 
   private
 
