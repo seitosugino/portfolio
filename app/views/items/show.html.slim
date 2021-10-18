@@ -32,6 +32,10 @@
           | sold out
         
         br
+      h5.mt-3
+        |URL
+        br
+        = link_to @item.url,@item.url
         br
         br
         = link_to "一覧に戻る", items_path, style: 'color:black;'
