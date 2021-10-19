@@ -16,8 +16,6 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
-@import "slick-theme"; 
-@import "slick";
 
 #box{
   height: 600px;
@@ -38,9 +36,22 @@
   background-image: url(top5.jpg);
 }
 
-.about-image {
-  background-image: url(about.jpeg);
+.top3 {
+  font-size: 56px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  line-height : 10em;
 }
+
+.top4 {
+  font-size: 56px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  line-height : 10em;
+}
+
 
 body {
     background-image: url("main1.jpg");
