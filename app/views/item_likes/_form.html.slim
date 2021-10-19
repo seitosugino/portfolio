@@ -1,3 +1,8 @@
+          - if current_customer == nil
+            i.fas.fa-heart
+            = item.item_likes.count
+            |いいね
+          -else
             - if item.liked_by?(current_customer)
               .liked
                 = link_to item_item_like_path(item, current_customer.item_likes.find_by(item_id: item.id)), method: :delete, remote: true do

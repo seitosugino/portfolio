@@ -18,7 +18,7 @@
         tr
           th
             = attachment_image_tag @post, :title_image, :fill, 200, 200
-          th
+          th style='width:80%'
             = @post.introduction
         tr
           td.text-left
@@ -38,9 +38,9 @@
               = @post.star
       table
         tr
-          td.text-right
+          th
             = attachment_image_tag @post, :body_image, :fill, 300, 300
-          td
+          td style='width:80%'
             = @post.body
             
       table

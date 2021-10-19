@@ -27,7 +27,9 @@ class Post < ApplicationRecord
   end
   
   def liked_by?(customer)
-    likes.where(customer_id: customer.id).exists?
+    if id == nil
+      likes.where(customer_id: customer.id).exists?
+    end
   end
   
   def self.search(search)
