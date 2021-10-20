@@ -91,6 +91,12 @@ class OrdersController < ApplicationController
     @total_price= total_price.sum
     @total_payment= @total_price + 800
   end
+  
+  def sell
+    @order = Order.all
+    @item = Item.find(params[:id])
+    @order_items = @item.order_items
+  end
 
   private
 

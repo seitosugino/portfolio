@@ -51,6 +51,9 @@ Rails.application.routes.draw do
       post :log
       get :thanks
     end
+    member do
+      get :sell
+    end
   end
   resources :addresses,only: [:index,:create,:edit,:update,:destroy]
   resources :genres,only: [:show]

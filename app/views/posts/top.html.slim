@@ -8,10 +8,7 @@
       - else
         = link_to "新規投稿はこちら", new_post_path,class: "top3", style: 'color:white;'
     .image4
-      - if current_customer == nil
-        = link_to "商品投稿はこちら", new_customer_session_path,class: "top4", style: 'color:white;'
-      - else
-        = link_to "商品投稿はこちら",new_item_path,class: "top4", style: 'color:white;'
+      |
     .image5
 
 h3.text-center.mt-5
