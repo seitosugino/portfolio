@@ -17,6 +17,20 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+body {
+    background-image: url("main1.jpg");
+    background-size: cover;
+    color: #45381F;
+    padding: 0;
+    margin: 0;
+    font-family: serif;
+
+}
+
+h1,h2,h3,h4,h5 {
+  color: #241b09;
+}
+
 #box{
   height: 600px;
 }
@@ -38,39 +52,30 @@
 
 .top3 {
   font-size: 56px;
-  display: block;
   width: 100%;
   text-align: center;
   line-height : 10em;
 }
 
 .top4 {
+  color: #FFFFFF;
   font-size: 56px;
-  display: block;
   width: 100%;
   text-align: center;
   line-height : 10em;
-}
-
-
-body {
-    background-image: url("main1.jpg");
-    background-size: cover;
-    color: #45381F;
-    padding: 0;
-    margin: 0;
-    font-family: serif;
-
-}
-
-h1,h2,h3,h4,h5 {
-  color: #241b09;
 }
 
 .count {
   color: #241b09;
 }
 
-.navbar-title{
+.navbar-title {
   background-image: url(head.jpg);
+}
+
+.about {
+  background-image: url(about.jpg);
+  height: 533px;
+  width: 800px;
+  margin : 0 auto
 }
