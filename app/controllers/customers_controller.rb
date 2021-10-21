@@ -33,6 +33,13 @@ class CustomersController < ApplicationController
         @entry = Entry.new
       end
     end
+    @data = [[Date.today.ago(6.days), @posts.created_6day_ago.count],
+    [Date.today.ago(5.days), @posts.created_5day_ago.count],
+    [Date.today.ago(4.days), @posts.created_4day_ago.count],
+    [Date.today.ago(3.days), @posts.created_3day_ago.count],
+    [Date.today.ago(2.days), @posts.created_2day_ago.count],
+    [Date.yesterday, @posts.created_yesterday.count],
+    [Date.today, @posts.created_today.count]]
   end
   
   def following

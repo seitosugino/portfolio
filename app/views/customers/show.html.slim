@@ -75,3 +75,26 @@
         |商品一覧
       .d-flex.flex-wrap.mt-3.mx-auto
         = render "items/item_each", items: @items
+      
+      = line_chart @data
+      br
+      
+      table.table_width.table.table-bordered.mb-5
+        tr
+          th
+            |今週の投稿数
+          th
+            |前週の投稿数
+          th
+            |前週比
+        tr
+          td
+            = @posts.created_this_week.count
+          td
+            = @posts.created_last_week.count
+          td
+            - if @posts.created_last_week.count == 0
+              |前週の投稿が0のため計算できません
+            - else
+              - @the_week_before = @posts.created_this_week.count / @posts.created_last_week.count.to_f
+              = (@the_week_before * 100).round

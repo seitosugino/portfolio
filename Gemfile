@@ -84,3 +84,4 @@ gem 'impressionist', '~> 1.6.1'
 gem 'rails-i18n'
 gem 'enum_help'
 gem "dotenv-rails"
+gem "chartkick"
