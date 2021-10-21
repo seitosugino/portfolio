@@ -42,3 +42,4 @@
             -if item.customer == current_customer
               br
               = link_to "編集",edit_item_path(item), class: 'btn', style: 'color:black;'
+              = link_to "販売状況はこちら", sell_order_path(item), class: 'btn', style: 'color:black;'

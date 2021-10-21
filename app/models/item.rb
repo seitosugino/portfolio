@@ -17,9 +17,7 @@ class Item < ApplicationRecord
   end
 
   def liked_by?(customer)
-    if id == nil
-      item_likes.where(customer_id: customer.id).exists?
-    end
+    item_likes.where(customer_id: customer.id).exists?
   end
 
   def avg_score

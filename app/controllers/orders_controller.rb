@@ -95,7 +95,6 @@ class OrdersController < ApplicationController
     @order = Order.all
     @item = Item.find(params[:id])
     @order_items = @item.order_items
-    
   end
 
   private

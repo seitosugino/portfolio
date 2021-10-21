@@ -3,7 +3,7 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :active_relationships, class_name: "Relationship",foreign_key: "follower_id",dependent: :destroy
@@ -21,19 +21,19 @@ class Customer < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :item_likes, dependent: :destroy
   attachment :image
-  
+
   def follow(other_customer)
     following << other_customer
   end
-  
+
   def unfollow(other_customer)
     active_relationships.find_by(followed_id: other_customer.id).destroy
   end
-  
+
   def following?(other_customer)
     following.include?(other_customer)
   end
-  
+
   def self.search(search)
     if search
       Customer.where(['name LIKE ?', '%'+search+'%'])
@@ -41,7 +41,7 @@ class Customer < ApplicationRecord
       Customer.all
     end
   end
-  
+
   def self.sort(selection)
     case selection
       when 'new'
@@ -63,5 +63,5 @@ class Customer < ApplicationRecord
         return joins("LEFT OUTER JOIN posts ON customers.id = posts.customer_id LEFT OUTER JOIN likes ON posts.id = likes.post_id").group("posts.id").order("count(likes.id) asc")
     end
   end
-  
+
 end

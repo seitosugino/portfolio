@@ -59,4 +59,5 @@ Rails.application.routes.draw do
   resources :addresses,only: [:index,:create,:edit,:update,:destroy]
   resources :genres,only: [:show]
   resources :item_rates,only: [:show,:create]
+  resources :order_items,only: [:update]
 end

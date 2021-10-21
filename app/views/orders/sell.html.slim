@@ -13,39 +13,4 @@
             |数量
           th style='width:20%'
             |小計
-        - @order_items.each do |order|
-          tr
-            td
-              = order.item.name
-            td
-              = (order.item.taxin_price).to_s(:delimited)
-              |円
-            td
-              = order.amount
-              |個
-            td
-              = (order.item.taxin_price * order.amount).to_s(:delimited)
-              |円
-          table.table_width.table.table-bordered.mb-5
-            tr
-              th style='width:15%'
-                |名前
-              th style='width:10%'
-                |郵便番号
-              th style='width:75%'
-                |住所
-            tr
-              td
-                = order.order.name
-              td
-                = order.order.postal_code
-              td
-                = order.order.address
-          table.table_width.table.table-bordered.mb-5
-            tr
-              th
-                |ステータス
-              td
-                = form_with model:order, url: sell_order_path(order), local: true  do |f|
-                  = f.select :making_status,  { '発送準備中': 0, '発送完了': 1 }
-                  = f.submit '更新'
+        = render 'orders/form', order_items: @order_items
