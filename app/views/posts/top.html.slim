@@ -29,10 +29,11 @@ h5.text-center.mt-5
   |気になるランキングを選択してください
 
 h5.text-center.mt-5
-  = form_with url: root_path, method: :get, local: true do |form|
+  = form_with url: rank_path, method: :get, remote: true do |form|
           = form.select :keyword,[ ['閲覧数の多い記事ランキング', 'rank1'],
                                    ['平均評価の高い記事ランキング', 'rank2'],
                                    ['いいね数の多い記事ランキング', 'rank3'],
                                   ]
           = form.submit 'ランキングを表示'
-= render 'rank', posts: @posts, impression: @impression, rate: @rate, like: @like
+.ranking
+  = render 'rank', posts: @posts

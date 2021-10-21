@@ -1,8 +1,7 @@
-- if request.fullpath.include?('rank1')
   h3.text-center.mt-5
-    |閲覧数ランキング
+    = @title
   .d-flex.flex-wrap.mt-3
-    - impression.each.with_index(1) do |posts, i|
+    - posts.each.with_index(1) do |posts, i|
       .mx-auto.text-center
         h5
           |第
@@ -16,42 +15,3 @@
         .item-index-name.mt-2
           |閲覧数 : 
           = posts.impressions_count
-- elsif request.fullpath.include?('rank2')
-  - unless rate == []  
-    h3.text-center.mt-5
-      |評価ランキング
-    .d-flex.flex-wrap.mt-3
-      - rate.each.with_index(1) do |posts, i|
-        .mx-auto.text-center
-          h5
-            |第
-            = i
-            |位
-          = link_to post_path(posts), style: 'color:black;' do
-            .item-img-box
-              = attachment_image_tag posts, :title_image, size:"250x190"
-            .item-index-name.mt-2
-              = posts.title
-          .item-index-name.mt-2
-              = posts.avg_score
-              |点
-- elsif request.fullpath.include?('rank3')
-  - unless like == []
-    h3.text-center.mt-5
-      |いいねランキング
-    .d-flex.flex-wrap.mt-3
-      - like.each.with_index(1) do |posts, i|
-        .mx-auto.text-center
-          h5
-            |第
-            = i
-            |位
-          = link_to post_path(posts), style: 'color:black;' do
-            .item-img-box
-              = attachment_image_tag posts, :title_image, size:"250x190"
-            .item-index-name.mt-2
-              = posts.title
-          .item-index-name.mt-2
-              = posts.likes.count
-              |いいね
-- else

@@ -57,7 +57,6 @@ class OrdersController < ApplicationController
     order= Order.new(order_params)
     order.customer_id = current_customer.id
     @cart_items = current_customer.cart_items
-
     if order.save
       @cart_items.each do |cart_item|
         @order_item = OrderItem.new
@@ -96,6 +95,7 @@ class OrdersController < ApplicationController
     @order = Order.all
     @item = Item.find(params[:id])
     @order_items = @item.order_items
+    
   end
 
   private

@@ -2,10 +2,19 @@ class PostsController < ApplicationController
   
   def top
     @posts = Post.all
-    @impression = Post.order('impressions_count desc').limit(4)
-    byebug
-    @like = Post.find(Like.group(:post_id).order('count(likes.id) desc').limit(4).pluck(:post_id))
-    @rate = Post.find(Rate.group(:post_id).order('avg(star) desc').limit(4).pluck(:post_id))
+   
+
+  end
+  
+  def rank
+    if params[:keyword] == "rank1"
+      @posts = Post.order('impressions_count desc').limit(4)
+    elsif params[:keyword] == "rank3"
+      @posts = Post.find(Like.group(:post_id).order('count(likes.id) desc').limit(4).pluck(:post_id))
+    elsif params[:keyword] == "rank2"
+      @posts = Post.find(Rate.group(:post_id).order('avg(star) desc').limit(4).pluck(:post_id))
+    end
+    @title = 'ランキング'
   end
   
   def about

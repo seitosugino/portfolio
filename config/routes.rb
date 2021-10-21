@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root :to => 'posts#top'
   get 'about' => 'posts#about'
+  get "rank" => "posts#rank"
   resources :posts,only: [:index,:new,:create,:show,:edit,:update] do
     resources :likes, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
