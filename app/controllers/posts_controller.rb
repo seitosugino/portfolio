@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   def top
     @posts = Post.all
     @impression = Post.order('impressions_count desc').limit(4)
+    byebug
     @like = Post.find(Like.group(:post_id).order('count(likes.id) desc').limit(4).pluck(:post_id))
     @rate = Post.find(Rate.group(:post_id).order('avg(star) desc').limit(4).pluck(:post_id))
   end
