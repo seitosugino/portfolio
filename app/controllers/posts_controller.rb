@@ -9,12 +9,15 @@ class PostsController < ApplicationController
   def rank
     if params[:keyword] == "rank1"
       @posts = Post.order('impressions_count desc').limit(4)
-    elsif params[:keyword] == "rank3"
-      @posts = Post.find(Like.group(:post_id).order('count(likes.id) desc').limit(4).pluck(:post_id))
+      @title = '閲覧数ランキング'
     elsif params[:keyword] == "rank2"
       @posts = Post.find(Rate.group(:post_id).order('avg(star) desc').limit(4).pluck(:post_id))
+      @title = '平均評価ランキング'
+    elsif params[:keyword] == "rank3"
+      @posts = Post.find(Like.group(:post_id).order('count(likes.id) desc').limit(4).pluck(:post_id))
+      @title = 'いいね数ランキング'
     end
-    @title = 'ランキング'
+    
   end
   
   def about
@@ -76,9 +79,9 @@ class PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-    if @post = Post.update(post_params)
+    if @post.update(post_params)
       flash[:notice] = "記事を更新しました。"
-      redirect_to post_poth(@post)
+      redirect_to post_path(@post)
     else
       render :edit
     end

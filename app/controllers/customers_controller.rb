@@ -1,5 +1,4 @@
 class CustomersController < ApplicationController
-  before_action :logged_in_customer, only:[ :edit, :update, :create, :destroy]
   
   def index
     selection = params[:keyword]
@@ -54,6 +53,24 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @customers = @customer.followers
     render 'show_follow'
+  end
+  
+  def edit
+    @customer = Customer.find(params[:id])
+  end
+  
+  def update
+    @customer = Customer.find(params[:id])
+    if @customer.update(customer_params)
+      flash[:notice] = "プロフィールを更新しました。"
+      redirect_to customer_path(@customer)
+    else
+      render :edit
+    end
+  end
+  
+  def customer_params
+    params.require(:customer).permit(:image, :name, :introduction)
   end
   
 end

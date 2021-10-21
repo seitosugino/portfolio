@@ -1,0 +1,25 @@
+.container
+  .row
+    .col-sm-12.col-md-9.col-lg-6.px-5.px-sm-0.mx-auto
+      h3.mt-3
+        |プロフィール編集
+      = form_with model:@customer, local:true do |f|
+        table
+          tr
+            th
+              | プロフィール画像
+            td
+              = f.attachment_field :image
+          th
+            br
+              | 名前
+            td
+              = f.text_field :name, class: 'form-control', placeholder:"名前"
+          tr
+            th
+              | 自己紹介
+            td
+              = f.text_area :introduction, class: "form-control", placeholder:'自己紹介'
+
+
+        = f.submit "更新"

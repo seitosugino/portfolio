@@ -18,7 +18,7 @@
       table
         tr
           th.mx-auto.text-center style='width:50%'
-            = attachment_image_tag @customer, :image, :fill, size:"120x120", fallback: 'no_image.jpg'
+            = attachment_image_tag @customer, :image, size:"120x120", fallback: 'no_image.jpg', size:"120x120"
             br
             br
             = @customer.name
@@ -26,7 +26,7 @@
             .follow_count
               = render 'relationships/follow_count', customer: @customer
                 - if customer_signed_in? && @user != current_customer
-            -unless @customer == current_customer
+            - unless @customer == current_customer
               .follow_form
                 - if current_customer.following?(@customer)
                   = render 'relationships/unfollow', customer: @customer
@@ -52,6 +52,8 @@
             
       h3.mt-5
         |自己紹介
+      - if @customer == current_customer
+        = link_to 'プロフィール編集', edit_customer_path(@customer), class: 'btn', style: 'color:black;'
       - if @customer.introduction == nil
         .container.px-5.px-sm-0
           .row

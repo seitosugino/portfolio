@@ -35,7 +35,7 @@
             tr
               td.text-left
                 = link_to customer_path(customers), style: 'color:black;' do
-                  = attachment_image_tag customers, :image, :fill, 50, 50, fallback: "no_image.jpg"
+                  = attachment_image_tag customers, :image, size:"60x60", fallback: "no_image.jpg"
                   = customers.name
               td.text-left
                 = customers.posts.count

@@ -92,7 +92,6 @@ class OrdersController < ApplicationController
   end
   
   def sell
-    @order = Order.all
     @item = Item.find(params[:id])
     @order_items = @item.order_items
   end
