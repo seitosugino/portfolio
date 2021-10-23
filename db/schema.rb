@@ -250,8 +250,8 @@ ActiveRecord::Schema.define(version: 2021_10_18_035738) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "customer_id"
-    t.integer "category_id"
+    t.bigint "customer_id"
+    t.bigint "category_id"
     t.string "title"
     t.text "introduction"
     t.string "title_image_id"
