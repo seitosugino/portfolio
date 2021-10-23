@@ -85,3 +85,6 @@ gem 'rails-i18n'
 gem 'enum_help'
 gem "dotenv-rails"
 gem "chartkick"
+group :production do
+  gem 'mysql2'
+end
