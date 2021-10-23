@@ -11,9 +11,12 @@
         table
           tr
             td.text-right
-              = link_to "新規投稿", new_post_path, class: 'btn', style: 'color:black;'
+              = link_to '新規投稿', new_post_path, class: 'btn', style: 'color:black;'
+            -if @customer.id == 1
+              td.text-center
+              = link_to "販売状況", all_order_path, class: 'btn', style: 'color:black;'
             td.text-left
-              = link_to "新規商品", new_item_path, class: 'btn', style: 'color:black;'
+              = link_to '新規商品', new_item_path, class: 'btn', style: 'color:black;'
         
       table
         tr
@@ -75,7 +78,8 @@
         = render "posts/post_each", posts: @posts
       h3.mt-3
         |商品一覧
-      = link_to "販売一覧はこちら", customer_order_path(@customer), class: 'btn', style: 'color:black;'
+      - if @customer == current_customer
+        = link_to "販売一覧はこちら", customer_order_path(@customer), class: 'btn', style: 'color:black;'
       .d-flex.flex-wrap.mt-3.mx-auto
         = render "items/item_each", items: @items
       

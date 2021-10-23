@@ -1,0 +1,33 @@
+        - orders.each do |order|
+          table.table_width.table.table-bordered.mb-5
+            tr
+              th style='width:15%'
+                |名前
+              th style='width:10%'
+                |郵便番号
+              th style='width:75%'
+                |住所
+            tr
+              td
+                = order.name
+              td
+                = order.postal_code
+              td
+                = order.address
+          table.table_width.table.table-bordered.mb-5
+            tr
+              th.text-center style='width:50%'
+                |入金ステータス
+              td
+                = form_with model:order, local: true  do |f|
+                  = f.select :status, Order.statuses.keys, class: 'payment_status'
+                  = f.submit '更新'
+          
+          table.table_width.table.table-bordered.mb-5  
+            - order.order_items.each do |order_item|
+              tr
+                th.text-center style='width:50%'
+                  = order_item.item.name
+                td
+                  = link_to order_item.making_status, sell_order_path(order_item.item_id), class: 'btn', style: 'color:black;'
+            

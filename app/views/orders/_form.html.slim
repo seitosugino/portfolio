@@ -29,8 +29,16 @@
           table.table_width.table.table-bordered.mb-5
             tr
               th
-                |ステータス
+                |入金ステータス
+              th
+                |発送ステータス
+            tr
               td
-                = form_with model:order, remote: true  do |f|
-                  = f.select :making_status,  { '発送準備中': 0, '発送完了': 1 }, class: 'status'
-                  = f.submit '更新'
+                = order.order.status
+              td
+                - if order.order.status == "入金待ち"
+                  |決算をお待ちください
+                - else
+                  = form_with model:order, remote: true  do |f|
+                    = f.select :making_status, OrderItem.making_statuses.keys, class: 'status'
+                    = f.submit '更新'

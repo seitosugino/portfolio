@@ -51,6 +51,8 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_items = @order.order_items
     @order_item = OrderItem.find(params[:id])
+    @order.update(order_params)
+    redirect_to request.referer
   end
 
   def create
@@ -98,6 +100,10 @@ class OrdersController < ApplicationController
 
   def customer
     @order_items = Item.where(customer_id: params[:id]).includes(order_items: [:order])
+  end
+  
+  def all
+    @orders = Order.all
   end
 
   private
