@@ -18,7 +18,7 @@
 @import 'font-awesome';
 
 body {
-    background-image: url("main1.jpg");
+    background-image: image-url("main1.jpg");
     background-size: cover;
     color: #45381F;
     padding: 0;
@@ -35,19 +35,19 @@ h1,h2,h3,h4,h5 {
   height: 600px;
 }
 .image1 {
-  background-image: url(top1.jpg);
+  background-image: image-url(top1.jpg);
 }
 .image2 {
-  background-image: url(top2.jpeg);
+  background-image: image-url(top2.jpeg);
 }
 .image3 {
-  background-image: url(top3.jpg);
+  background-image: image-url(top3.jpg);
 }
 .image4 {
-  background-image: url(top4.jpg);
+  background-image: image-url(top4.jpg);
 }
 .image5 {
-  background-image: url(top5.jpg);
+  background-image: image-url(top5.jpg);
 }
 
 .top3 {
@@ -71,11 +71,11 @@ h1,h2,h3,h4,h5 {
 }
 
 .navbar-title {
-  background-image: url(head.jpg);
+  background-image: image-url(head.jpg);
 }
 
 .about {
-  background-image: url(about.jpg);
+  background-image: image-url(about.jpg);
   height: 533px;
   width: 800px;
   margin : 0 auto
