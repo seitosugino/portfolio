@@ -179,8 +179,8 @@ ActiveRecord::Schema.define(version: 2021_10_18_035738) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "customer_id"
-    t.integer "genre_id"
+    t.bigint "customer_id"
+    t.bigint "genre_id"
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
@@ -190,8 +190,6 @@ ActiveRecord::Schema.define(version: 2021_10_18_035738) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "impressions_count", default: 0
-    t.index ["customer_id"], name: "index_items_on_customer_id"
-    t.index ["genre_id"], name: "index_items_on_genre_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -226,7 +224,7 @@ ActiveRecord::Schema.define(version: 2021_10_18_035738) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "customer_id"
+    t.bigint "customer_id"
     t.string "postal_code", null: false
     t.string "address", null: false
     t.string "name", null: false
@@ -236,7 +234,6 @@ ActiveRecord::Schema.define(version: 2021_10_18_035738) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   create_table "post_comments", force: :cascade do |t|

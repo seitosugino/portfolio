@@ -1,7 +1,8 @@
 class CreateOrders < ActiveRecord::Migration[5.2]
   def change
     create_table :orders do |t|
-      t.references :customer, foreign_key: true
+      #t.references :customer, foreign_key: true
+      t.bigint :customer_id
       t.string "postal_code", null: false
       t.string "address", null: false
       t.string "name", null: false
@@ -12,5 +13,6 @@ class CreateOrders < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+    add_foreign_key :orders, :customers
   end
 end

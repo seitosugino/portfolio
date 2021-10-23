@@ -1,8 +1,10 @@
 class CreateItems < ActiveRecord::Migration[5.2]
   def change
     create_table :items do |t|
-      t.references :customer, foreign_key: true
-      t.references :genre, foreign_key: true
+      #t.references :customer, foreign_key: true
+      t.bigint :customer_id
+      t.bigint :genre_id
+      #t.references :genre, foreign_key: true
       t.string "name", null: false
       t.text "introduction", null: false
       t.integer "price", null: false
@@ -12,5 +14,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+    add_foreign_key :items, :customers
+    add_foreign_key :items, :genres
   end
 end
