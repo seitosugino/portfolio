@@ -54,6 +54,7 @@ Rails.application.routes.draw do
     end
     member do
       get :sell
+      get :customer
     end
   end
   resources :addresses,only: [:index,:create,:edit,:update,:destroy]

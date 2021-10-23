@@ -75,6 +75,7 @@
         = render "posts/post_each", posts: @posts
       h3.mt-3
         |商品一覧
+      = link_to "販売一覧はこちら", customer_order_path(@customer), class: 'btn', style: 'color:black;'
       .d-flex.flex-wrap.mt-3.mx-auto
         = render "items/item_each", items: @items
       

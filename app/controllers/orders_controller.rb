@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
-  
+
   def index
     @orders= Order.where(customer_id: current_customer.id)
   end
-  
+
   def new
     @address = Address.find_by(customer_id: params[:customer_id])
     @addresses = Address.where(customer_id: current_customer.id)
@@ -90,10 +90,14 @@ class OrdersController < ApplicationController
     @total_price= total_price.sum
     @total_payment= @total_price + 800
   end
-  
+
   def sell
     @item = Item.find(params[:id])
     @order_items = @item.order_items
+  end
+
+  def customer
+    @order_items = Item.where(customer_id: params[:id]).includes(order_items: [:order])
   end
 
   private

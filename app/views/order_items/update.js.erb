@@ -1,1 +1,2 @@
 $(".status").html("<%= j(render 'orders/form', order_items: @order_items) %>");
+$(".status_<%= order.id %>").html("<%= j(render 'orders/customer', order_items: @order_items) %>");
