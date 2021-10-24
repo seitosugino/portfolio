@@ -7,9 +7,6 @@
         = link_to "新規投稿はこちら", new_customer_session_path,class: "top3", style: 'color:white;'
       - else
         = link_to "新規投稿はこちら", new_post_path,class: "top3", style: 'color:white;'
-    .image4.top4
-      |出品された商品には紹介記事が用意されています
-    .image5
 
 h3.text-center.mt-5
   |新着投稿
@@ -33,6 +30,8 @@ h5.text-center.mt-5
           = form.select :keyword,[ ['閲覧数の多い記事ランキング', 'rank1'],
                                    ['平均評価の高い記事ランキング', 'rank2'],
                                    ['いいね数の多い記事ランキング', 'rank3'],
+                                   ['平均評価の高い商品ランキング', 'rank4'],
+                                   ['いいね数の多い商品ランキング', 'rank5'],
                                   ]
           = form.submit 'ランキングを表示'
 .ranking

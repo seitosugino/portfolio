@@ -2,20 +2,27 @@ class PostsController < ApplicationController
   
   def top
     @posts = Post.all
+    @title = '閲覧数の多い記事ランキング'
    
 
   end
   
   def rank
-    if params[:keyword] == "rank1"
+    if params[:keyword] == 'rank1'
       @posts = Post.order('impressions_count desc').limit(4)
-      @title = '閲覧数ランキング'
-    elsif params[:keyword] == "rank2"
+      @title = '閲覧数の多い記事ランキング'
+    elsif params[:keyword] == 'rank2'
       @posts = Post.find(Rate.group(:post_id).order('avg(star) desc').limit(4).pluck(:post_id))
-      @title = '平均評価ランキング'
-    elsif params[:keyword] == "rank3"
+      @title = '平均評価の高い記事ランキング'
+    elsif params[:keyword] == 'rank3'
       @posts = Post.find(Like.group(:post_id).order('count(likes.id) desc').limit(4).pluck(:post_id))
-      @title = 'いいね数ランキング'
+      @title = 'いいね数の多い記事ランキング'
+    elsif params[:keyword] == 'rank4'
+      @posts = Item.find(Rate.group(:item_id).order('avg(star) desc').limit(4).pluck(:item_id))
+      @title = '平均評価の高い商品ランキング'
+    elsif params[:keyword] == 'rank5'
+      @posts = Item.find(ItemLike.group(:item_id).order('count(item_likes.id) desc').limit(4).pluck(:item_id))
+      @title = 'いいね数の多い商品ランキング'
     end
     
   end
