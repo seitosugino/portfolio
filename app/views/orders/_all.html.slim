@@ -19,7 +19,7 @@
               th.text-center style='width:50%'
                 |入金ステータス
               td
-                = form_with model:order, local: true  do |f|
+                = form_with model:order, remoto: true do |f|
                   = f.select :status, Order.statuses.keys, class: 'payment_status'
                   = f.submit '更新'
           

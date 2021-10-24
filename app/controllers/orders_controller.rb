@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
   def index
-    @orders= Order.where(customer_id: current_customer.id)
+    @orders = Order.where(customer_id: current_customer.id)
   end
 
   def new
@@ -48,11 +48,12 @@ class OrdersController < ApplicationController
   end
 
   def update
+    @orders = Order.sort(params[:keyword])
+    @orders = Kaminari.paginate_array(@orders).page(params[:page]).per(5)
     @order = Order.find(params[:id])
     @order_items = @order.order_items
     @order_item = OrderItem.find(params[:id])
     @order.update(order_params)
-    redirect_to request.referer
   end
 
   def create
@@ -103,7 +104,8 @@ class OrdersController < ApplicationController
   end
   
   def all
-    @orders = Order.all
+    @orders = Order.sort(params[:keyword])
+    @orders = Kaminari.paginate_array(@orders).page(params[:page]).per(5)
   end
 
   private
