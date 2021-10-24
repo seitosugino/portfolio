@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-sm-12.col-md-8.col-lg-6.px-5.px-sm-0.mx-auto.text-center
+      h3.mt-3
+        |商品カテゴリー編集
+      = form_with model:@category, url: category_path(@category),local:true do |f|
+        br
+        = f.label :カテゴリー名
+        br
+        = f.text_field :name
+        br
+        br
+        = f.submit

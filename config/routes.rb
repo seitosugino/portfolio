@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships, only: [:create, :destroy]
-  resources :categories,only: [:show]
+  resources :categories,only: [:index,:create,:show,:edit,:update]
   resources :rates,only: [:show,:create]
   resources :messages, only: [:create]
   resources :rooms, only: [:index,:create,:show]
@@ -59,7 +59,7 @@ Rails.application.routes.draw do
     end
   end
   resources :addresses,only: [:index,:create,:edit,:update,:destroy]
-  resources :genres,only: [:show]
+  resources :genres,only: [:index,:create,:show,:edit,:update]
   resources :item_rates,only: [:show,:create]
   resources :order_items,only: [:update]
 end

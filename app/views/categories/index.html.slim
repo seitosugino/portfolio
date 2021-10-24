@@ -1,0 +1,15 @@
+.container
+  .row
+    .col-sm-12.col-md-8.col-lg-6.px-5.px-sm-0.mx-auto.text-center
+      h3.mt-3
+        |投稿カテゴリー一覧
+      br
+      = form_with model:@category, url: categories_path,remoto:true do |f|
+        = f.label :カテゴリー名
+        br
+        = f.text_field :name, class: 'category-name'
+        br
+        br
+        = f.submit
+      #category
+        = render 'index', categories: @categories

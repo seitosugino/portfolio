@@ -20,6 +20,9 @@
                                 ]
         = form.submit '並び替え'
       br
+      -if current_customer.id == 1
+        = link_to 'ジャンル一覧', genres_path, class: 'btn', style: 'color:black;'
+      br
       - @genres.each do |genre|
         = link_to genre.name, genre_path(genre), class: 'mx-3', style: 'color:black;'
         
