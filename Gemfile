@@ -88,3 +88,8 @@ gem "chartkick"
 group :production do
   gem 'mysql2'
 end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+end
