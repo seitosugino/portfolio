@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :ensure_customer, only: [:edit, :update]
   
   def top
     @posts = Post.all
@@ -103,8 +104,15 @@ class PostsController < ApplicationController
   
   private
   
-  def post_params
-    params.require(:post).permit(:customer_id, :category_id, :title, :introduction, :title_image, :body, :body_image, :url, :original, :star, :tag_list)
-  end
+    def post_params
+      params.require(:post).permit(:customer_id, :category_id, :title, :introduction, :title_image, :body, :body_image, :url, :original, :star, :tag_list)
+    end
+  
+    def ensure_customer
+      @customer = Customer.find(params[:id])
+      unless @customer == current_customer
+        redirect_to root_path
+      end
+    end
 end
 

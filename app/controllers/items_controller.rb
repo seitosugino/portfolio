@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :ensure_customer, only: [:edit, :update]
   
   def index
     selection = params[:keyword]
@@ -56,7 +57,14 @@ class ItemsController < ApplicationController
 
   private
 
-  def item_params
-    params.require(:item).permit(:item_image, :name, :introduction, :genre_id, :price, :is_active, :url)
-  end
+    def item_params
+      params.require(:item).permit(:item_image, :name, :introduction, :genre_id, :price, :is_active, :url)
+    end
+    
+    def ensure_customer
+      @customer = Customer.find(params[:id])
+      unless @customer == current_customer
+        redirect_to root_path
+      end
+    end
 end

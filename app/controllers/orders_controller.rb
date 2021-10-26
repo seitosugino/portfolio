@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :customer_role, only: [:all]
+  before_action :ensure_customer, only: [:customer]
 
   def index
     @orders = Order.where(customer_id: current_customer.id)
@@ -110,8 +112,24 @@ class OrdersController < ApplicationController
 
   private
 
-  def order_params
-    params.require(:order).permit(:postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
-  end
+    def order_params
+      params.require(:order).permit(:postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
+    end
+    
+    def customer_role
+      @orders = Order.sort(params[:keyword])
+      @orders = Kaminari.paginate_array(@orders).page(params[:page]).per(5)
+      unless current_customer.role == true
+        redirect_to root_path
+      end
+    end
+    
+    def ensure_customer
+      @customer = Customer.find(params[:id])
+      @order_items = Item.where(customer_id: params[:id]).includes(order_items: [:order])
+      unless @customer == current_customer
+        redirect_to root_path
+      end
+    end
 
 end

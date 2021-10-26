@@ -18,8 +18,9 @@
                                 ]
         = form.submit '並び替え'
       br
-      -if current_customer.id == 1
-        = link_to 'カテゴリー一覧', categories_path, class: 'btn', style: 'color:black;'
+      - unless current_customer == nil
+        - if current_customer.role == true
+          = link_to 'カテゴリー一覧', categories_path, class: 'btn', style: 'color:black;'
       br
       - @categories.each do |category|
         = link_to category.name, category_path(category), class: 'mx-3', style: 'color:black;'
