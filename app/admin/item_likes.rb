@@ -11,5 +11,13 @@ ActiveAdmin.register ItemLike do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
+    permit_params :item_id,:customer_id
+    
+    form do |f|
+    f.inputs 'カート' do
+      f.input :item_id
+      f.input :customer_id
+    end
+    f.actions
+  end
 end

@@ -11,5 +11,16 @@ ActiveAdmin.register Address do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
+    permit_params :customer_id,:name,:postal_code,:address
+    
+    form do |f|
+    f.inputs '住所' do
+      f.input :customer_id
+      f.input :name
+      f.input :postal_code
+      f.input :address
+    end
+    f.actions
+  end
+    
 end

@@ -1,4 +1,5 @@
 class GenresController < ApplicationController
+  before_action :customer_role, only: [:index]
   
   def index
     @genres = Genre.all
@@ -40,5 +41,11 @@ class GenresController < ApplicationController
   private
     def genre_params
       params.require(:genre).permit(:name)
+    end
+    
+    def customer_role
+      unless current_customer.role == true
+        redirect_to root_path
+      end
     end
 end

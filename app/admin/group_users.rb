@@ -11,5 +11,14 @@ ActiveAdmin.register GroupUser do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
+    permit_params :group_id,:customer_id,:content
+    
+    form do |f|
+    f.inputs 'カート' do
+      f.input :group_id
+      f.input :customer_id
+      f.input :content
+    end
+    f.actions
+  end
 end

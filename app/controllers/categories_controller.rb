@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :customer_role, only: [:index]
   
   def index
     @categories = Category.all
@@ -40,6 +41,12 @@ class CategoriesController < ApplicationController
   private
     def category_params
       params.require(:category).permit(:name)
+    end
+    
+    def customer_role
+      unless current_customer.role == true
+        redirect_to root_path
+      end
     end
   
 end

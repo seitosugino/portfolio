@@ -11,5 +11,14 @@ ActiveAdmin.register Message do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+  permit_params :customer_id,:room_id,:content
 
+  form do |f|
+    f.inputs 'ユーザー' do
+      f.input :customer_id
+      f.input :room_id
+      f.input :content
+    end
+    f.actions
+  end
 end

@@ -22,6 +22,7 @@
         - if current_customer.role == true
           = link_to 'カテゴリー一覧', categories_path, class: 'btn', style: 'color:black;'
       br
+      br
       - @categories.each do |category|
         = link_to category.name, category_path(category), class: 'mx-3', style: 'color:black;'
        

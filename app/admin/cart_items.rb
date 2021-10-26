@@ -11,5 +11,14 @@ ActiveAdmin.register CartItem do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
+    permit_params :item_id,:customer_id,:amount
+    
+    form do |f|
+    f.inputs 'カート' do
+      f.input :item_id
+      f.input :customer_id
+      f.input :amount
+    end
+    f.actions
+  end
 end

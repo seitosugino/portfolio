@@ -18,7 +18,6 @@ ActiveAdmin.register Like do
     f.inputs 'いいね' do
       f.input :post_id
       f.input :customer_id
-
     end
     f.actions
   end

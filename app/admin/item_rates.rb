@@ -11,5 +11,15 @@ ActiveAdmin.register ItemRate do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
+    permit_params :item_id,:customer_id,:star,:comment
+    
+    form do |f|
+    f.inputs 'カート' do
+      f.input :item_id
+      f.input :customer_id
+      f.input :star
+      f.input :comment
+    end
+    f.actions
+  end
 end

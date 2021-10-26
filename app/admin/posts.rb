@@ -11,7 +11,7 @@ ActiveAdmin.register Post do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-  permit_params :customer_id,:category_id,:title,:introduction,:title_image,:body,:body_image,:url,:original,:star
+  permit_params :customer_id,:category_id,:title,:postal_code,:introduction,:title_image_id,:body,:body_image_id,:url,:star
 
   form do |f|
     f.inputs '投稿' do

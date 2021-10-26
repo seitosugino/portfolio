@@ -11,5 +11,13 @@ ActiveAdmin.register Entry do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
+    permit_params :customer_id,:room_id
+    
+    form do |f|
+    f.inputs 'カート' do
+      f.input :customer_id
+      f.input :room_id
+    end
+    f.actions
+  end
 end

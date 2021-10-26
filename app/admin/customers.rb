@@ -11,14 +11,14 @@ ActiveAdmin.register Customer do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-  permit_params :name,:introduction,:image
+  permit_params :name,:introduction,:image,:role
 
   form do |f|
     f.inputs 'ユーザー' do
       f.input :name
       f.input :introduction
       f.input :image_id, :as => :file
-
+      f.input :role
     end
     f.actions
   end

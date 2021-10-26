@@ -11,5 +11,12 @@ ActiveAdmin.register Genre do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
+    permit_params :name
+    
+    form do |f|
+    f.inputs 'カート' do
+      f.input :name
+    end
+    f.actions
+  end
 end
