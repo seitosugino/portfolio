@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 AdminUser.create!(email: 'admin@example.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
 
-Customer.create!(email: 'a@a', password: '123456', password_confirmation: '123456', name: '管理者', introduction: 'テスト', role: 'true') if Rails.env.development?
-Customer.create!(email: 't@t', password: '123456', password_confirmation: '123456', name: 'テスト', introduction: 'テスト', role: 'false') if Rails.env.development?
+Customer.create!(email: 'a@a', password: '123456', password_confirmation: '123456', name: '管理者', introduction: 'テスト', role: 'true') 
+Customer.create!(email: 't@t', password: '123456', password_confirmation: '123456', name: 'テスト', introduction: 'テスト', role: 'false') 
 
 Genre.create!(name: '周辺機器')
 Genre.create!(name: 'DIY')
