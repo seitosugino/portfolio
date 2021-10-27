@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ItemRate, type: :model do
+RSpec.describe ItemLike, type: :model do
   before do
     @customer = FactoryBot.create(:customer)
     @genre = FactoryBot.create(:genre)
@@ -10,11 +10,11 @@ RSpec.describe ItemRate, type: :model do
   context "全てのカラムが入力されている場合" do
     customer = @customer
     item = @item
-    let!(:item_rate) do
-      ItemRate.new({ customer_id: 1,item_id: 1,star: 4.5,comment: 'tesuto' })
+    let!(:item_like) do
+      ItemLike.new({ customer_id: 1,item_id: 1 })
     end
-    it '商品レートを保存できる' do
-      expect(item_rate).to be_valid
+    it '商品いいねを保存できる' do
+      expect(item_like).to be_valid
     end
   end
 end
