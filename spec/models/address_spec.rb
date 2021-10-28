@@ -8,7 +8,7 @@ RSpec.describe Address, type: :model do
   context "全てのカラムが入力されている場合" do
     customer = @customer
     let!(:address) do
-      Address.new({ customer_id: 1,name: 1,postal_code: 1,address: 1 })
+      Address.new({ customer_id: 1,name: 1,postal_code: 1234567,address: 1 })
     end
     it 'メッセージを保存できる' do
       expect(address).to be_valid

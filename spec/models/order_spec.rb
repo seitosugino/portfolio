@@ -8,7 +8,7 @@ RSpec.describe Order, type: :model do
   context "全てのカラムが入力されている場合" do
     customer = @customer
     let!(:order) do
-      Order.new({ customer_id: 1,postal_code: 1,address: 1,name: 1,shipping_cost: 1,total_payment: 1,payment_method: 1,status: 1 })
+      Order.new({ customer_id: 1,postal_code: 1234567,address: 1,name: 1,shipping_cost: 1,total_payment: 1,payment_method: 0,status: 1 })
     end
     it 'オーダーを保存できる' do
       expect(order).to be_valid
