@@ -38,6 +38,8 @@ class PostsController < ApplicationController
     elsif params[:keyword]
       @posts = Post.sort(params[:keyword])
       @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
+    elsif params[:day]
+      @posts = Post.day(params[:day]).order(created_at: :desc).page(params[:page]).per(8)
     else
       @posts = Post.search(params[:search]).order(created_at: :desc).page(params[:page]).per(8)
     end

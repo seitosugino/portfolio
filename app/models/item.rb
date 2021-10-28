@@ -39,6 +39,14 @@ class Item < ApplicationRecord
       Item.all
     end
   end
+  
+   def self.day(day)
+    if day
+      Item.where(created_at: day.in_time_zone.all_day)
+    else
+      Item.all
+    end
+  end
 
   def self.sort(selection)
     case selection

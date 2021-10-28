@@ -28,6 +28,14 @@
       - @genres.each do |genre|
         = link_to genre.name, genre_path(genre), class: 'mx-3', style: 'color:black;'
         
-      .item-index.d-flex.flex-wrap.mt-3.mx-auto
+      .item-index.d-flex.flex-wrap.mt-3.mx-auto.item_each
         = render "item_each", items: @items, customer: @customer
       = paginate @items
+      
+      .col-sm-7.col-md-5.col-lg-3.mx-auto.text-center
+        br
+        = form_with model: @item, url: items_path, method: :get, remoto: true do |f|
+          = f.date_field :day
+          br
+          br
+          = f.submit '検索'

@@ -26,7 +26,7 @@
       - @categories.each do |category|
         = link_to category.name, category_path(category), class: 'mx-3', style: 'color:black;'
        
-      .d-flex.flex-wrap.mt-3.mx-auto
+      .d-flex.flex-wrap.mt-3.mx-auto.post_each
         = render 'post_each', posts: @posts, customer: @customer
       = paginate @posts
       
@@ -36,3 +36,11 @@
       
       - @tags.each do |tag|
         = link_to "#{tag.name}(#{tag.taggings_count})", posts_path(tag: tag.name), class: "mx-2", style: 'color:black;'
+        
+      .col-sm-7.col-md-5.col-lg-3.mx-auto.text-center
+        br
+        = form_with model: @post, url: posts_path, method: :get, remote: true do |f|
+          = f.date_field :day
+          br
+          br
+          = f.submit '検索'

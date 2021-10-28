@@ -37,6 +37,14 @@ class Post < ApplicationRecord
       Post.all
     end
   end
+  
+  def self.day(day)
+    if day
+      Post.where(created_at: day.in_time_zone.all_day)
+    else
+      Post.all
+    end
+  end
 
   def self.sort(selection)
     case selection
