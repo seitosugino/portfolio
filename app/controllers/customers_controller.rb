@@ -87,10 +87,9 @@ class CustomersController < ApplicationController
   end
   
   def ensure_customer
-      @customer = Customer.find(params[:id])
-      unless @customer == current_customer
-        redirect_to root_path
-      end
+    @customer = Customer.find(params[:id])
+    unless @customer == current_customer
+      redirect_to root_path
     end
-  
+  end
 end

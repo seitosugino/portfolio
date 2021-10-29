@@ -31,6 +31,9 @@ https://drive.google.com/file/d/11Qv9PN_u5kOQBWwgmKIscfIwlxh_1Dnx/view?usp=shari
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1Vkf-4zj5yh6V0p9aNjtnZUwsfQAuSGCPnpXCiv3IBZw/edit?usp=sharing
 
+## テーブル提議書
+https://docs.google.com/spreadsheets/d/1zGlyOk0ktFNF0_dtHOLZE63kkPAmhFSSmQjSErZD4lw/edit?usp=sharing
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
