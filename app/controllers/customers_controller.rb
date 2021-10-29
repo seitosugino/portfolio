@@ -69,6 +69,14 @@ class CustomersController < ApplicationController
     end
   end
   
+  def calendar
+    @customer = Customer.find(params[:id])
+    @events = Event.where(customer_id: @customer.id)
+    @event = Event.new
+  end
+  
+  private
+  
   def customer_params
     params.require(:customer).permit(:image, :name, :introduction)
   end

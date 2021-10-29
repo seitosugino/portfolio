@@ -16,4 +16,5 @@ RSpec.describe Item, type: :model do
       expect(item).to be_valid
     end
   end
+  
 end
