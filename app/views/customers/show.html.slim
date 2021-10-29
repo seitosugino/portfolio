@@ -50,9 +50,15 @@
                     = f.submit "チャットを始める"
           td
             - if @customer.id == current_customer.id
+              = link_to "マッチング一覧", matchers_customer_path(current_customer), class: 'btn', style: 'color:black;'
+        tr
+          td
+            - if @customer.id == current_customer.id
+              = link_to 'カレンダー機能', calendar_customer_path(current_customer), class: 'btn', style: 'color:black;'
+          td
+            - if @customer.id == current_customer.id
               = link_to "注文一覧", orders_path, class: 'btn', style: 'color:black;'
               = link_to "住所登録", addresses_path, class: 'btn', style: 'color:black;'
-            -else
             
       h3.mt-5
         |自己紹介

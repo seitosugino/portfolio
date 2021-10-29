@@ -75,6 +75,10 @@ class CustomersController < ApplicationController
     @event = Event.new
   end
   
+  def matchers
+    @customers = current_customer.matchers
+  end
+  
   private
   
   def customer_params

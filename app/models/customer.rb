@@ -64,5 +64,9 @@ class Customer < ApplicationRecord
         return joins("LEFT OUTER JOIN posts ON customers.id = posts.customer_id LEFT OUTER JOIN likes ON posts.id = likes.post_id").group("posts.id").order("count(likes.id) asc")
     end
   end
+  
+  def matchers
+    following & followers
+  end
 
 end

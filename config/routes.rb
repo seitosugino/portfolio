@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
       get :calendar
+      get :matchers
     end
   end
   resources :relationships, only: [:create, :destroy]
