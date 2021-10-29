@@ -1,0 +1,18 @@
+.container
+  .row
+    .col-sm-12.col-md-10.col-lg-08.px-5.px-sm-0.mx-auto.text-center
+      h3.mt-3
+        |イベント詳細
+      br
+      table.table.table-hover.table-inverse
+        tr
+          th.text-center
+            = @event.title
+        tr
+          td
+            = @event.content
+        tr
+          td
+            = @event.start_time
+      = link_to '編集', edit_event_path(@event), class: 'btn', style: 'color:black;'
+      = link_to '削除', event_path(@event), method: :delete, class: 'btn', style: 'color:black;'

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'events/index'
   devise_for :customers, controllers: {
     sessions: 'customers/sessions',
     registrations: 'customers/registrations'
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
   resources :customers,only: [:index,:show,:edit,:update] do
     member do
       get :following, :followers
+      get :calendar
     end
   end
   resources :relationships, only: [:create, :destroy]
@@ -62,4 +64,5 @@ Rails.application.routes.draw do
   resources :genres,only: [:index,:create,:show,:edit,:update]
   resources :item_rates,only: [:show,:create]
   resources :order_items,only: [:update]
+  resources :events
 end

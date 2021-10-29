@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-sm-12.col-md-10.col-lg-08.px-5.px-sm-0.mx-auto.text-center
+      h3.mt-3
+        |カレンダー
+        
+      = link_to 'イベント追加', new_event_path, class: 'btn', style: 'color:black;'
+
+      = month_calendar events: @events do |date, events|
+        = date.day
+        - events.each do |event|
+          br
+          = link_to event.title, event_path(event), class: 'btn', style: 'color:black;'

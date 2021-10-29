@@ -1,0 +1,29 @@
+.container
+  .row
+    .col-sm-12.col-md-9.col-lg-6.px-5.px-sm-0.mx-auto
+      h3.mt-3
+        |イベント編集
+      = form_with model: @event,  local:true do |f|
+        tr
+          th
+            br
+            br
+              | イベント
+          td
+            = f.text_field :title
+        tr
+          th
+            br
+            br
+              | 詳細
+          td
+            = f.text_area :content
+        tr
+          th
+            br
+            br
+              | 詳細
+          td
+            = f.datetime_select :start_time
+            
+        = f.submit "情報更新"
