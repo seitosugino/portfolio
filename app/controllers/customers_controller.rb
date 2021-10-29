@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_action :ensure_customer, only: [:calendar]
   
   def index
     selection = params[:keyword]
@@ -84,5 +85,12 @@ class CustomersController < ApplicationController
   def customer_params
     params.require(:customer).permit(:image, :name, :introduction)
   end
+  
+  def ensure_customer
+      @customer = Customer.find(params[:id])
+      unless @customer == current_customer
+        redirect_to root_path
+      end
+    end
   
 end

@@ -94,3 +94,5 @@ group :development, :test do
   gem 'factory_bot_rails'
 end
 gem 'simple_calendar', '~> 2.0'
+gem 'rubocop', require:false
+gem 'rubocop-rails', require:false
