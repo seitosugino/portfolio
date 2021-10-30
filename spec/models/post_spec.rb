@@ -16,15 +16,4 @@ RSpec.describe Post, type: :model do
       expect(post).to be_valid
     end
   end
-  
-  context "全てのカラムが入力されている場合" do
-    customer = @customer
-    category = @category
-    let!(:post) do
-      Post.edit({ customer_id: 1,category_id: 1,title: 'tesuto',introduction: 'tesuto', title_image_id: open('./app/assets/images/no_image.jpg'), body: true, body_image_id: open('./app/assets/images/no_image.jpg'), url: 'tesuto', star: 1 })
-    end
-    it '商品を更新できる' do
-      expect(post).to be_valid
-    end
-  end
 end
