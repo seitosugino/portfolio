@@ -1,4 +1,5 @@
 class ItemRatesController < ApplicationController
+  before_action :login_check, only: [:show]
   def show
     @item = Item.find(params[:id])
     @rate = ItemRate.new
@@ -15,7 +16,15 @@ class ItemRatesController < ApplicationController
   end
   
   private
+  
   def rate_params
     params.require(:item_rate).permit(:star, :comment, :item_id, :customer_id,)
+  end
+  
+  def login_check
+    unless customer_signed_in?
+      flash[:alert] = "ログインしてください"
+      redirect_to new_customer_session_path
+    end
   end
 end

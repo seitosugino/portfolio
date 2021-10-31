@@ -12,7 +12,7 @@
             = @post.created_at.strftime('%Y/%m/%d %H:%M:%S')
         tr
           td.text-right
-              = render "likes/form", post: @post
+            = render "likes/form", post: @post
   
       table
         tr
@@ -49,7 +49,7 @@
             |URL
         tr
           td.text-left
-            = @post.url
+            = link_to @post.url,@post.url
             
       table
         tr
@@ -85,6 +85,6 @@
       h2.text-left
         |コメント
       table.post_comment
-          = render 'post_comments/index', post: @post
+        = render 'post_comments/index', post: @post
       
       = render 'post_comments/form', post: @post, post_comment: @post_comment

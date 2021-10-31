@@ -1,4 +1,5 @@
 class RatesController < ApplicationController
+  before_action :login_check, only: [:show]
 
   def show
     @post = Post.find(params[:id])
@@ -18,5 +19,12 @@ class RatesController < ApplicationController
   private
   def rate_params
     params.require(:rate).permit(:star, :comment, :post_id, :customer_id,)
+  end
+  
+  def login_check
+    unless customer_signed_in?
+      flash[:alert] = "ログインしてください"
+      redirect_to new_customer_session_path
+    end
   end
 end
