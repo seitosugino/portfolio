@@ -44,9 +44,9 @@
           th
             br
             br
-              | URL
+              | 記事
           td
-            = f.text_field :url, placeholder: "http://"
+            = f.collection_select :url, current_customer.posts, :id, :title, prompt: "-- 選択してください --"
         br
         br
         = f.submit "新規登録"
