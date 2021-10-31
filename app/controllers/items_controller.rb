@@ -28,7 +28,6 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.customer_id = current_customer.id
-    @item.url = params[:id]
     if @item.save!
       flash[:notice] = "#{@item.name}を登録しました"
       redirect_to item_path(@item)

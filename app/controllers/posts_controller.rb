@@ -60,6 +60,7 @@ class PostsController < ApplicationController
   
   def show
     @post = Post.find(params[:id])
+    @item = Item.where(url: @post.id).first
     @tags = @post.tag_counts_on(:tags)
     @like = Like.new
     @post_comment = PostComment.new

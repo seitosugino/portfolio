@@ -49,7 +49,10 @@
             |URL
         tr
           td.text-left
-            = @post.url
+            - if @item == nil
+              = @post.url
+            -else
+              = link_to '商品ページへ', item_path(@item.url), style: 'color:black;'
             
       table
         tr
