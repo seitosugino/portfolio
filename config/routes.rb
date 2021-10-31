@@ -45,7 +45,7 @@ Rails.application.routes.draw do
       get :rates
     end
   end
-  resources :cart_items,only: [:index,:create,:show,:edit,:update, :destroy] do
+  resources :cart_items,only: [:index,:create,:edit,:update, :destroy] do
     collection do
       delete :cart_destroy
     end
