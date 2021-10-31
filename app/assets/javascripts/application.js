@@ -10,9 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require jquery_ujs
 //= require activestorage
 //= require turbolinks
-//= require jquery
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require_tree .
@@ -20,7 +21,7 @@
 //= require chartkick
 //= require Chart.bundle
 
-$(document).ready(function () {
+$(document).on('turbolinks:load', function() {
   $("#images").skippr({
     // スライドショーの変化 ("fade" or "slide")
     transition : 'slide',

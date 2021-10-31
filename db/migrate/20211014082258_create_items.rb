@@ -16,5 +16,6 @@ class CreateItems < ActiveRecord::Migration[5.2]
     end
     add_foreign_key :items, :customers
     add_foreign_key :items, :genres
+    add_index :items, :url, unique: true 
   end
 end
