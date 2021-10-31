@@ -34,6 +34,9 @@ https://docs.google.com/spreadsheets/d/1Vkf-4zj5yh6V0p9aNjtnZUwsfQAuSGCPnpXCiv3I
 ## テーブル提議書
 https://docs.google.com/spreadsheets/d/1zGlyOk0ktFNF0_dtHOLZE63kkPAmhFSSmQjSErZD4lw/edit?usp=sharing
 
+## 詳細設計
+https://docs.google.com/spreadsheets/d/1vmVXWmvJePKgQWG6gqdCrsTc8inYmr93PDRgboX9nzw/edit?usp=sharing
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
