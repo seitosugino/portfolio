@@ -112,8 +112,9 @@ class PostsController < ApplicationController
     end
   
     def ensure_customer
-      @customer = Customer.find(params[:id])
-      unless @customer == current_customer
+      @post = Post.find(params[:id])
+      @customer = @post.customer_id
+      unless @customer == current_customer.id
         redirect_to root_path
       end
     end

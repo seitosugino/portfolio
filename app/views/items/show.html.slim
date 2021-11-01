@@ -11,6 +11,13 @@
           = render "item_likes/form", item: @item
         br
         = attachment_image_tag @item, :item_image, size:"500x380"
+        br
+        - if current_customer == nil
+        - else
+          - if @item.customer_id == current_customer.id
+            - @item.item_tags.each do |tag|
+              span.label
+                = tag.name
       h3.mx-3
         br
         = @item.name

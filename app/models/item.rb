@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :item_likes, dependent: :destroy
   has_many :item_rates, dependent: :destroy
+  has_many :item_tags, dependent: :destroy
   is_impressionable counter_cache: true
   attachment :item_image
 
