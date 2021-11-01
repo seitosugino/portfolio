@@ -3,7 +3,7 @@
     .col-sm-12.col-md-9.col-lg-6.px-5.px-sm-0.mx-auto
       h3.mt-3
         |商品編集
-      = form_with model: @item, url: items_path, local:true do |f|
+      = form_with model: @item, local:true do |f|
         tr
           th
             br
@@ -56,4 +56,4 @@
             = f.select :is_active, {"販売中": true, "販売停止中": false}
         br
         br
-        = f.submit "新規登録"
+        = f.submit "商品更新"

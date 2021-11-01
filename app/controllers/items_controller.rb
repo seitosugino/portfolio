@@ -47,7 +47,14 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
+    @item_tags = @item.item_tags.all
+    @item.score = Language.get_data(item_params[:introduction]) 
     if @item.update(item_params)
+      @item_tags.destroy_all
+      item_tags = Vision.get_image_data(@item.item_image)    
+      item_tags.each do |tag|
+        @item.item_tags.create(name: tag)
+      end
       flash[:notice] = "商品内容を変更しました"
       redirect_to item_path(@item)
     else
