@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.score = Language.get_data(item_params[:introduction]) 
     @item.customer_id = current_customer.id
     if @item.save!
       flash[:notice] = "#{@item.name}を登録しました"

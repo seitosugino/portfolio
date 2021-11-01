@@ -17,6 +17,14 @@
       br
         = @item.introduction
       br
+        - if current_customer == nil
+        - else
+          - if @item.customer_id == current_customer.id
+            .sentiment-score
+              h5
+                |本文の感情分析スコア
+              = @item.score
+      br
         |  ￥
         = @item.taxin_price.to_s(:delimited)
         | （税込）
