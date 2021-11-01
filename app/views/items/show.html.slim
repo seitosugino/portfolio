@@ -18,12 +18,7 @@
             - @item.item_tags.each do |tag|
               span.label
                 = tag.name
-      h3.mx-3
         br
-        = @item.name
-      br
-        = @item.introduction
-      br
         - if current_customer == nil
         - else
           - if @item.customer_id == current_customer.id
@@ -31,6 +26,11 @@
               h5
                 |本文の感情分析スコア
               = @item.score
+      h3.mx-3
+        br
+        = @item.name
+      br
+        = @item.introduction
       br
         |  ￥
         = @item.taxin_price.to_s(:delimited)
