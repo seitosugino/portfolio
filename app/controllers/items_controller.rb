@@ -30,6 +30,10 @@ class ItemsController < ApplicationController
     @item.score = Language.get_data(item_params[:introduction]) 
     @item.customer_id = current_customer.id
     if @item.save!
+      item_tags = Vision.get_image_data(@item.item_image)    
+      item_tags.each do |tag|
+        @item.item_tags.create(name: tag)
+      end
       flash[:notice] = "#{@item.name}を登録しました"
       redirect_to item_path(@item)
     else
@@ -63,10 +67,11 @@ class ItemsController < ApplicationController
     def item_params
       params.require(:item).permit(:item_image, :name, :introduction, :genre_id, :price, :is_active, :url)
     end
-    
+
     def ensure_customer
-      @customer = Customer.find(params[:id])
-      unless @customer == current_customer
+      @item = Post.find(params[:id])
+      @customer = @item.customer_id
+      unless @customer == current_customer.id
         redirect_to root_path
       end
     end
