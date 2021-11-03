@@ -23,7 +23,7 @@
 多くの人の意見を出来るだけ具体的に知りたい場合
 
 ### AI機能
-投稿の画像に関する要素や楽天市場のAPI
+投稿の画像と投稿文に対するAIを導入して投稿者に自分の投稿判定結果を見せるように
 
 ## ER図
 https://drive.google.com/file/d/11Qv9PN_u5kOQBWwgmKIscfIwlxh_1Dnx/view?usp=sharing
